@@ -7,7 +7,7 @@ let
 
 in
 pkgs.mkShell {
-  NIX_SHELL = "meshBarn";
+  NIX_SHELL = "tap-meshstack";
   buildInputs = [
     python-with-my-packages
 
