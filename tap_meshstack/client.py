@@ -21,8 +21,8 @@ class MeshStackStream(RESTStream):
     # but we're protoyping with a mock API that uses different conventions
     # records_jsonpath = "$._embedded[*]"  # Or override `parse_response`.
     # next_page_token_jsonpath = "$._links[?(@.rel=='next')].href"
-    
-    records_jsonpath = "$._content[*]"  # Or override `parse_response`.
+
+    records_jsonpath = "$.content[*]"  # Or override `parse_response`.
     next_page_token_jsonpath = "$.links[?(@.rel=='next')].href"
 
 
