@@ -1,4 +1,4 @@
-"""REST client handling, including meshStackStream base class."""
+"""REST client handling, including MeshStackStream base class."""
 
 import requests
 from pathlib import Path
@@ -14,7 +14,7 @@ from singer_sdk.authenticators import BasicAuthenticator
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
 
-class meshStackStream(RESTStream):
+class MeshStackStream(RESTStream):
     """meshStack stream class."""
     
     records_jsonpath = "$._embedded[*]"  # Or override `parse_response`.

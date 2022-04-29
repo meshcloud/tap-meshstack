@@ -5,12 +5,12 @@ from typing import Any, Dict, Optional, Union, List, Iterable
 
 from singer_sdk import typing as th  # JSON Schema typing helpers
 
-from tap_meshstack.client import meshStackStream
+from tap_meshstack.client import MeshStackStream
 
 # TODO: Delete this is if not using json files for schema definition
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
-class ChargebackStatementsStream(meshStackStream):
+class ChargebackStatementsStream(MeshStackStream):
     """ChagebackStatements meshObject stream"""
     name = "chargebackStatements"
     path = "/api/meshobjects/meshchargebackstatements"
