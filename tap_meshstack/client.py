@@ -16,15 +16,16 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
 class meshStackStream(RESTStream):
     """meshStack stream class."""
+    
+    records_jsonpath = "$._embedded[*]"  # Or override `parse_response`.
+    next_page_token_jsonpath = "$._links[?(@.rel=='next')].href"
 
     @property
     def url_base(self) -> str:
         """Return the API URL root, configurable via tap settings."""
         return self.config["api_url"]
 
-    records_jsonpath = "$[*]"  # Or override `parse_response`.
-    next_page_token_jsonpath = "$.next_page"  # Or override `get_next_page_token`.
-
+    
     @property
     def authenticator(self) -> BasicAuthenticator:
         """Return a new authenticator object."""
