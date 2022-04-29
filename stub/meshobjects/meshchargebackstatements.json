@@ -1,5 +1,5 @@
 {
-  "_embedded": {
+  "content": {
     "apiVersion": "v1",
     "kind": "meshChargebackStatement",
     "metadata": {
@@ -42,7 +42,7 @@
       "netAmounts": [{ "currency": "EUR", "amount": 5.17 }]
     }
   },
-  "_links": {
+  "links": {
     "todo": "paging"
   }
 }

@@ -17,8 +17,14 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class MeshStackStream(RESTStream):
     """meshStack stream class."""
     
-    records_jsonpath = "$._embedded[*]"  # Or override `parse_response`.
-    next_page_token_jsonpath = "$._links[?(@.rel=='next')].href"
+    # todo: these ones would be actually correct for productive meshStack,
+    # but we're protoyping with a mock API that uses different conventions
+    # records_jsonpath = "$._embedded[*]"  # Or override `parse_response`.
+    # next_page_token_jsonpath = "$._links[?(@.rel=='next')].href"
+    
+    records_jsonpath = "$._content[*]"  # Or override `parse_response`.
+    next_page_token_jsonpath = "$.links[?(@.rel=='next')].href"
+
 
     @property
     def url_base(self) -> str:
