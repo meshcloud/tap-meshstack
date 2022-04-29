@@ -75,7 +75,10 @@
                 "reportId": {
                   "type": "string"
                 },
-                "tenantId": {
+                "tenantLocalId": {
+                  "type": "string"
+                },
+                "platformIdentifier": {
                   "type": "string"
                 },
                 "entryDate": {
@@ -97,19 +100,7 @@
                   "type": "string"
                 },
                 "tags": {
-                  "type": "object",
-                  "required": [],
-                  "properties": {
-                    "PaymentType": {
-                      "type": "string"
-                    },
-                    "CostCenter": {
-                      "type": "string"
-                    },
-                    "paymentName": {
-                      "type": "string"
-                    }
-                  }
+                  "type": "object"
                 }
               }
             }
