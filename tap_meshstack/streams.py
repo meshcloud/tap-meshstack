@@ -13,10 +13,10 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class ChargebackStatementsStream(meshStackStream):
     """ChagebackStatements meshObject stream"""
     name = "chargebackStatements"
-    path = "/api/meshobjects/chargebackstatements"
+    path = "/api/meshobjects/meshchargebackstatements"
     # primary_keys = ["id"]
     replication_key = None
     # Optionally, you may also use `schema_filepath` in place of `schema`:
-    schema_filepath = SCHEMAS_DIR / "chargebackstatement.json"
+    schema_filepath = SCHEMAS_DIR / "meshChargebackStatement.json"
     
 

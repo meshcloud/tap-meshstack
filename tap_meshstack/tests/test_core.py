@@ -9,8 +9,8 @@ from tap_meshstack.tap import TapmeshStack
 SAMPLE_CONFIG = {
     "user" : "user",
     "password": "password",
-    "api_url": "http://[::]:8000/",
-    "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+    "api_url": "http://localhost:8000",
+    # "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     # TODO: Initialize minimal tap config
 }
 
