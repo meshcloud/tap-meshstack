@@ -4,17 +4,15 @@ from typing import List
 
 from singer_sdk import Tap, Stream
 from singer_sdk import typing as th  # JSON schema typing helpers
-# TODO: Import your custom stream types here:
+
 from tap_meshstack.streams import (
     meshStackStream,
-    UsersStream,
-    GroupsStream,
+    ChargebackStatementsStream,
 )
 # TODO: Compile a list of custom stream types here
 #       OR rewrite discover_streams() below with your custom logic.
 STREAM_TYPES = [
-    UsersStream,
-    GroupsStream,
+    ChargebackStatementsStream
 ]
 
 
@@ -25,27 +23,22 @@ class TapmeshStack(Tap):
     # TODO: Update this section with the actual config values you expect:
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "auth_token",
+            "user",
             th.StringType,
             required=True,
-            description="The token to authenticate against the API service"
+            description="The HTTP basic auth user to authenticate against the meshObject API"
         ),
         th.Property(
-            "project_ids",
-            th.ArrayType(th.StringType),
+            "password",
+            th.StringType,
             required=True,
-            description="Project IDs to replicate"
-        ),
-        th.Property(
-            "start_date",
-            th.DateTimeType,
-            description="The earliest record date to sync"
+            description="The HTTP basic auth password to authenticate against the meshObject API"
         ),
         th.Property(
             "api_url",
             th.StringType,
-            default="https://api.mysample.com",
-            description="The url for the API service"
+            required=True,
+            description="The url of the meshObject API (excluding the /api prefix!)"
         ),
     ).to_dict()
 

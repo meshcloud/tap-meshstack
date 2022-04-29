@@ -7,6 +7,9 @@ from singer_sdk.testing import get_standard_tap_tests
 from tap_meshstack.tap import TapmeshStack
 
 SAMPLE_CONFIG = {
+    "user" : "user",
+    "password": "password",
+    "api_url": "http://[::]:8000/",
     "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     # TODO: Initialize minimal tap config
 }
