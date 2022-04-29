@@ -1,0 +1,45 @@
+{
+  "apiVersion": "v1",
+  "kind": "meshChargebackStatement",
+  "metadata": {
+    "name": "test",
+    "createdOn": "2022-04-27T13:22:53Z",
+    "ownedByCustomer": "customer",
+    "ownedByProject": "project"
+  },
+  "spec": {
+    "period": "2022-03-06Z",
+    "timeframe": {
+      "from": "2022-03-06T00:00:00Z",
+      "to": "2022-04-06T00:00:00Z"
+    },
+    "displayName": "admin-customer",
+    "tags": {
+      "environment": "production"
+    }
+  },
+  "status": {
+    "lineItems": [
+      {
+        "type": "TenantUsageReport",
+        "reportId": "TenantUsageReports/sr.global:vw-identity-sync.infrastructure:2022-03-01Z",
+        "tenantId": "1234",
+        "entryDate": "2022-04-05T00:07:01.247032Z",
+        "period": "2022-03-01Z",
+        "netAmount": 5.17,
+        "currency": "EUR",
+        "sellerId": "mesh-it-services",
+        "sellerProductGroup": "unipipe-prod-global",
+        "tags": {
+          "PaymentType": "Internal",
+          "CostCenter": "70500",
+          "paymentName": "default"
+        }
+      }
+    ],
+    "netAmounts": [{ "currency": "EUR", "amount": 5.17 }]
+  },
+  "_links": {
+    "todo": "paging"
+  }
+}
