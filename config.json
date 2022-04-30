@@ -1,5 +1,33 @@
 {
-  "user": "user",
-  "password": "password",
-  "api_url": "http://localhost:8000"
+  "auth": {
+    "username": "user",
+    "password": "password"
+  },
+  "api_url": "http://localhost:8000",
+  "tag_schemas": {
+    "ChargebackStatement": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "environment": {
+          "type": "string"
+        }
+      }
+    },
+    "TenantUsageReport": {
+      "type": "object",
+      "properties": {
+        "PaymentType": {
+          "type": "string"
+        },
+        "CostCenter": {
+          "type": "string",
+          "format": "integer"
+        },
+        "paymentName": {
+          "type": "string"
+        }
+      }
+    }
+  }
 }

@@ -20,25 +20,51 @@ class TapMeshStack(Tap):
     """meshStack tap class."""
     name = "tap-meshstack"
 
-    # TODO: Update this section with the actual config values you expect:
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "user",
-            th.StringType,
+            "auth",
+            th.ObjectType(
+                th.Property(
+                    "username",
+                    th.StringType,
+                    required=True,
+                      description="The HTTP basic auth user to authenticate against the meshObject API"
+                ),
+                th.Property(
+                    "password",
+                    th.StringType,
+                    required=True,
+                    description="The HTTP basic auth password to authenticate against the meshObject API"
+                ),
+            ),
             required=True,
-            description="The HTTP basic auth user to authenticate against the meshObject API"
-        ),
-        th.Property(
-            "password",
-            th.StringType,
-            required=True,
-            description="The HTTP basic auth password to authenticate against the meshObject API"
+            description="API authentication configuration",
         ),
         th.Property(
             "api_url",
             th.StringType,
             required=True,
             description="The url of the meshObject API (excluding the /api prefix!)"
+        ),
+        th.Property(
+            "tag_schemas",
+            th.ObjectType(
+                 th.Property(
+                    "ChargebackStatement",
+                    th.ObjectType(),
+                    required=False,
+                    description="JSON schema for ChargebackStatement tags"
+                ),
+                th.Property(
+                    "TenantUsageReport",
+                    th.ObjectType(
+                    ),
+                    required=False,
+                    description="JSON schema for TenantUsageReport tags"
+                )
+            ),
+            required=True,
+            description="Expected JSON Schema for meshObject tags",
         ),
     ).to_dict()
 

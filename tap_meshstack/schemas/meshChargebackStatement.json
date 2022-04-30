@@ -48,15 +48,7 @@
           "displayName": {
             "type": "string"
           },
-          "tags": {
-            "type": "object",
-            "required": [],
-            "properties": {
-              "environment": {
-                "type": "string"
-              }
-            }
-          }
+          "tags": {}
         }
       },
       "status": {
