@@ -4,7 +4,7 @@ import datetime
 
 from singer_sdk.testing import get_standard_tap_tests
 
-from tap_meshstack.tap import TapmeshStack
+from tap_meshstack.tap import TapMeshStack
 
 SAMPLE_CONFIG = {
     "user" : "user",
@@ -19,7 +19,7 @@ SAMPLE_CONFIG = {
 def test_standard_tap_tests():
     """Run standard tap tests from the SDK."""
     tests = get_standard_tap_tests(
-        TapmeshStack,
+        TapMeshStack,
         config=SAMPLE_CONFIG
     )
     for test in tests:

@@ -16,7 +16,7 @@ STREAM_TYPES = [
 ]
 
 
-class TapmeshStack(Tap):
+class TapMeshStack(Tap):
     """meshStack tap class."""
     name = "tap-meshstack"
 

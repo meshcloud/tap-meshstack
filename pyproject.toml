@@ -35,4 +35,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 # CLI declaration
-tap-meshstack = 'tap_meshstack.tap:TapmeshStack.cli'
+tap-meshstack = 'tap_meshstack.tap:TapMeshStack.cli'
