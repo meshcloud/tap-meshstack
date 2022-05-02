@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "required": [],
+    "properties": {
+      "apiVersion": {
+        "type": "string"
+      },
+      "kind": {
+        "type": "string"
+      },
+      "metadata": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "ownedByCustomer": {
+            "type": "string"
+          }
+        }
+      },
+      "spec": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "tags": {}
+        }
+      },
+      "_links": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "todo": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }

@@ -6,13 +6,13 @@ from singer_sdk import Tap, Stream
 from singer_sdk import typing as th  # JSON schema typing helpers
 
 from tap_meshstack.streams import (
-    MeshStackStream,
-    ChargebackStatementsStream,
+    MeshChargebackStatementsStream,
+    MeshPaymentMethodsStream,
 )
-# TODO: Compile a list of custom stream types here
-#       OR rewrite discover_streams() below with your custom logic.
+
 STREAM_TYPES = [
-    ChargebackStatementsStream
+    # MeshChargebackStatementsStream,
+    MeshPaymentMethodsStream
 ]
 
 
