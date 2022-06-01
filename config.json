@@ -65,11 +65,5 @@
       "properties": {
       }
     },
-    "meshUser": {
-      "type": "object",
-      "required": [],
-      "properties": {
-      }
-    }
   }
 }

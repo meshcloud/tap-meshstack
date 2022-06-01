@@ -11,7 +11,6 @@ from tap_meshstack.streams import (
     MeshPaymentMethodsStream,
     MeshProjectsStream,
     MeshTenantsStream,
-    MeshUsersStream,
 )
 
 STREAM_TYPES = [
@@ -20,7 +19,6 @@ STREAM_TYPES = [
     MeshCustomersStream,
     MeshProjectsStream,
     MeshTenantsStream,
-    MeshUsersStream
 ]
 
 
@@ -91,13 +89,6 @@ class TapMeshStack(Tap):
                     required=False,
                     description="JSON schema for meshTenant tags"
                 ),
-                th.Property(
-                    "meshUser",
-                    th.ObjectType(
-                    ),
-                    required=False,
-                    description="JSON schema for meshUser tags"
-                )
             ),
             required=True,
             description="JSON Schema for meshObject tags. The tap needs schemas for every object that's part of a consumed stream.",

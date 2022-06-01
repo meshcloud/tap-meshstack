@@ -59,13 +59,3 @@ class MeshTenantsStream(MeshObjectStream):
         schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
 
         return schema
-
-class MeshUsersStream(MeshObjectStream):
-    name = "meshUsers"
-    name_singular = "meshUser"
-  
-    def apply_tag_schemas(self, schema) -> dict:
-        # chargeback statements have nested line items, that also have a tag schema
-        schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
-
-        return schema
