@@ -26,7 +26,8 @@ def extract(meshObject:str, type:str):
     return {
         'type': 'object',
         'properties': props,
-        'required': [x["tagKey"] for x in tags if x["attributes"]["mandatory"]]
+        # never make any field required, data may be inconsistent
+        # 'required': [x["tagKey"] for x in tags if x["attributes"]["mandatory"]]
     }
 
 config = {
