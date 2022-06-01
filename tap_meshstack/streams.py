@@ -1,60 +1,71 @@
 """Stream type classes for tap-meshstack."""
 
-from argparse import ArgumentError
-from contextvars import Context
-import json
 from pathlib import Path
 
 from singer_sdk import typing as th  # JSON Schema typing helpers
+from singer_sdk.plugin_base import PluginBase as TapBaseClass
 
-from tap_meshstack.client import MeshStackStream
+from tap_meshstack.client import MeshObjectStream
 
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
-class MeshChargebackStatementsStream(MeshStackStream):
-    """MeshChargebackStatementsStream meshObject stream"""
+class MeshChargebackStatementsStream(MeshObjectStream):
     name = "meshChargebackStatements"
-    path = "/api/meshobjects/meshchargebackstatements"
-    # primary_keys = ["id"]
-    replication_key = None
-
-    records_jsonpath = "$._embedded.meshChargebackStatements[*]"  # Or override `parse_response`.
+    name_singular = "meshChargebackStatement"
     
-    @property
-    def schema(self) -> dict:
-        """Get dynamic schema including the configured tag schema
-
-        Returns:
-            JSON Schema dictionary for this stream.
-        """
-    
-        schema_filepath = SCHEMAS_DIR / "meshChargebackStatement.json"
-        schema = json.loads(Path(schema_filepath).read_text())
-
-        schema["properties"]["spec"]["properties"]["tags"] = self.config["tag_schemas"]["meshChargebackStatement"]
-        schema["properties"]["status"]["properties"]["lineItems"]["items"]["properties"]["tags"]= self.config["tag_schemas"]["meshTenantUsageReport"]
+    def apply_tag_schemas(self, schema) -> dict:
+        # chargeback statements have nested line items, that also have a tag schema
+        schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
+        schema["properties"]["status"]["properties"]["lineItems"]["items"]["properties"]["tags"] = self.load_tag_schema("meshTenantUsageReport")
 
         return schema
 
-class MeshPaymentMethodsStream(MeshStackStream):
-    """MeshPaymentMethods meshObject stream"""
+class MeshPaymentMethodsStream(MeshObjectStream):
     name = "meshPaymentMethods"
-    path = "/api/meshobjects/meshpaymentmethods"
-    
-    # primary_keys = ["id"]
-    replication_key = None
+    name_singular = "meshPaymentMethod"
 
-    records_jsonpath = "$._embedded.meshPaymentMethods[*]" 
+    def apply_tag_schemas(self, schema) -> dict:
+        # chargeback statements have nested line items, that also have a tag schema
+        schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
 
-    @property
-    def schema(self) -> dict:
-        schema_filepath = SCHEMAS_DIR / "meshPaymentMethod.json"
-        schema = json.loads(Path(schema_filepath).read_text())
+        return schema
 
-        tag_schema = self.config["tag_schemas"].get("meshPaymentMethod")
-        if tag_schema is None: 
-            raise ArgumentError("tap config did not specify mandatory tag_schemas.meshPaymentMethod key")
+class MeshCustomersStream(MeshObjectStream):
+    name = "meshCustomers"
+    name_singular = "meshCustomer"
 
-        schema["properties"]["spec"]["properties"]["tags"] = tag_schema
+    def apply_tag_schemas(self, schema) -> dict:
+        # chargeback statements have nested line items, that also have a tag schema
+        schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
+
+        return schema
+
+class MeshProjectsStream(MeshObjectStream):
+    name = "meshProjects"
+    name_singular = "meshProject"
+   
+    def apply_tag_schemas(self, schema) -> dict:
+        # chargeback statements have nested line items, that also have a tag schema
+        schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
+
+        return schema
+
+class MeshTenantsStream(MeshObjectStream):
+    name = "meshTenants"
+    name_singular = "meshTenant"
+   
+    def apply_tag_schemas(self, schema) -> dict:
+        # chargeback statements have nested line items, that also have a tag schema
+        schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
+
+        return schema
+
+class MeshUsersStream(MeshObjectStream):
+    name = "meshUsers"
+    name_singular = "meshUser"
+  
+    def apply_tag_schemas(self, schema) -> dict:
+        # chargeback statements have nested line items, that also have a tag schema
+        schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
 
         return schema

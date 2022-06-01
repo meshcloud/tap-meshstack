@@ -1,26 +1,58 @@
-"""REST client handling, including MeshStackStream base class."""
+"""REST client handling, including MeshObjectStream base class."""
+
+from argparse import ArgumentError
 
 import requests
+import json
 from pathlib import Path
 from typing import Any, Optional, cast
 
 from singer_sdk.streams import RESTStream
 from singer_sdk.authenticators import BasicAuthenticator
-
+from singer_sdk.plugin_base import PluginBase as TapBaseClass
 
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
+class MeshObjectStream(RESTStream):
+    """meshStack meshObject stream class."""
+ 
+    def __init__(
+        self,
+        tap: TapBaseClass,
+    ) -> None:
+        super().__init__(tap=tap)
 
-class MeshStackStream(RESTStream):
-    """meshStack stream class."""
+        self.next_page_token_jsonpath = "$._links.next.href"
+        self.path = f"/api/meshobjects/{self.name.lower()}"
+        self.replication_key = None
+        self.records_jsonpath = f"$._embedded.${self.name}[*]" 
+
+    @property
+    def schema(self) -> dict:
+        """Get dynamic schema including the configured tag schema
+
+        Returns:
+            JSON Schema dictionary for this stream.
+        """
     
-    # todo: these ones would be actually correct for productive meshStack,
-    # but we're protoyping with a mock API that uses different conventions
-    next_page_token_jsonpath = "$._links.next.href"
+        schema_filepath = SCHEMAS_DIR / f"{self.name_singular}.json"
+        schema = json.loads(Path(schema_filepath).read_text())
 
-    # records_jsonpath = "$.content[*]"  # Or override `parse_response`.
-    # next_page_token_jsonpath = "$.links[?(@.rel=='next')].href"
+        self.apply_tag_schemas(schema)
+        
+        return schema
+    
+    def apply_tag_schemas(self, schema) -> dict:
+        """applies tag schemas to a meshObject schema"""
+        return schema
 
+    def load_tag_schema(self, name: str) -> dict:
+        """loads a valid tag schema from the tap config"""
+        tag_schema = self.config["tag_schemas"].get(name)
+        if tag_schema is None: 
+            raise Exception(f"tap config did not specify mandatory key tag_schemas.${name}")
+
+        return tag_schema
 
     @property
     def url_base(self) -> str:

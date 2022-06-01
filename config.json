@@ -30,22 +30,46 @@
       }
     },
     "meshPaymentMethod": {
-        "type": "object",
-        "required": [],
-        "properties": {
-          "department": {
-            "type": "string"
-          },
-          "paymentMethodType": {
-            "type": "string"
-          },
-          "Country": {
-            "type": "string"
-          },
-          "costCenterNumber": {
-            "type": "string"
-          }
+      "type": "object",
+      "required": [],
+      "properties": {
+        "department": {
+          "type": "string"
+        },
+        "paymentMethodType": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "costCenterNumber": {
+          "type": "string"
         }
       }
+    },
+    "meshCustomer": {
+      "type": "object",
+      "required": [],
+      "properties": {
+      }
+    },
+    "meshProject": {
+      "type": "object",
+      "required": [],
+      "properties": {
+      }
+    },
+    "meshTenant": {
+      "type": "object",
+      "required": [],
+      "properties": {
+      }
+    },
+    "meshUser": {
+      "type": "object",
+      "required": [],
+      "properties": {
+      }
+    }
   }
 }

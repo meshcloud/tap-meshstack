@@ -7,12 +7,20 @@ from singer_sdk import typing as th  # JSON schema typing helpers
 
 from tap_meshstack.streams import (
     MeshChargebackStatementsStream,
+    MeshCustomersStream,
     MeshPaymentMethodsStream,
+    MeshProjectsStream,
+    MeshTenantsStream,
+    MeshUsersStream,
 )
 
 STREAM_TYPES = [
     # MeshChargebackStatementsStream,
-    MeshPaymentMethodsStream
+    MeshPaymentMethodsStream,
+    MeshCustomersStream,
+    MeshProjectsStream,
+    MeshTenantsStream,
+    MeshUsersStream
 ]
 
 
@@ -50,21 +58,49 @@ class TapMeshStack(Tap):
             "tag_schemas",
             th.ObjectType(
                  th.Property(
-                    "ChargebackStatement",
+                    "meshChargebackStatement",
                     th.ObjectType(),
                     required=False,
-                    description="JSON schema for ChargebackStatement tags"
+                    description="JSON schema for meshChargebackStatement tags"
                 ),
                 th.Property(
-                    "TenantUsageReport",
+                    "meshTenantUsageReport",
                     th.ObjectType(
                     ),
                     required=False,
-                    description="JSON schema for TenantUsageReport tags"
+                    description="JSON schema for meshTenantUsageReport tags"
+                ),
+                th.Property(
+                    "meshCustomer",
+                    th.ObjectType(
+                    ),
+                    required=False,
+                    description="JSON schema for meshCustomer tags"
+                ),
+                th.Property(
+                    "meshProject",
+                    th.ObjectType(
+                    ),
+                    required=False,
+                    description="JSON schema for meshProject tags"
+                ),
+                th.Property(
+                    "meshTenant",
+                    th.ObjectType(
+                    ),
+                    required=False,
+                    description="JSON schema for meshTenant tags"
+                ),
+                th.Property(
+                    "meshUser",
+                    th.ObjectType(
+                    ),
+                    required=False,
+                    description="JSON schema for meshUser tags"
                 )
             ),
             required=True,
-            description="Expected JSON Schema for meshObject tags",
+            description="JSON Schema for meshObject tags. The tap needs schemas for every object that's part of a consumed stream.",
         ),
     ).to_dict()
 
