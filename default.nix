@@ -10,7 +10,7 @@ pkgs.mkShell {
   NIX_SHELL = "tap-meshstack";
   buildInputs = [
     python-with-my-packages
-
+    pkgs.yq
   ];
   shellHook = ''
     PYTHONPATH=${python-with-my-packages}/${python-with-my-packages.sitePackages}
