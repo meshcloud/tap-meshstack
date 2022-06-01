@@ -98,7 +98,6 @@ Create tests within the `tap_meshstack/tests` subfolder and
   then run:
 
 ```bash
-python3 stub/app.py # start the stub server
 poetry run pytest
 ```
 
