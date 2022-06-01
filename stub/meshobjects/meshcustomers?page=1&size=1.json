@@ -1,0 +1,61 @@
+{
+    "_embedded": {
+        "meshCustomers": [
+            {
+                "apiVersion": "v1",
+                "kind": "meshCustomer",
+                "metadata": {
+                    "name": "demo-customer",
+                    "createdOn": "2021-01-25T10:28:38Z"
+                },
+                "spec": {
+                    "displayName": "demo-customer",
+                    "tags": {
+                        "environment": [
+                            "dev"
+                        ],
+                        "Q": [
+                            "2"
+                        ]
+                    }
+                },
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8000/api/meshobjects/meshcustomers/demo-customer"
+                    },
+                    "meshtenants": {
+                        "href": "http://localhost:8000/api/meshobjects/meshtenants?customerIdentifier=demo-customer{&projectIdentifier,platformIdentifier}",
+                        "templated": true
+                    },
+                    "meshprojects": {
+                        "href": "http://localhost:8000/api/meshobjects/meshprojects?customerIdentifier=demo-customer"
+                    },
+                    "meshusers": {
+                        "href": "http://localhost:8000/api/meshobjects/meshusers?customerIdentifier=demo-customer{&projectIdentifier,platformIdentifier,customerRole,projectRole}",
+                        "templated": true
+                    },
+                    "meshpaymentmethods": {
+                        "href": "http://localhost:8000/api/meshobjects/meshpaymentmethods?customerIdentifier=demo-customer"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "first": {
+            "href": "http://localhost:8000/api/meshobjects/meshcustomers?page=0&size=1"
+        },
+        "prev": {
+            "href": "http://localhost:8000/api/meshobjects/meshcustomers?page=0&size=1"
+        },
+        "self": {
+            "href": "http://localhost:8000/api/meshobjects/meshcustomers?page=1&size=1"
+        }
+    },
+    "page": {
+        "size": 1,
+        "totalElements": 2,
+        "totalPages": 2,
+        "number": 1
+    }
+}

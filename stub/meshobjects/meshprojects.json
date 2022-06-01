@@ -1,0 +1,50 @@
+{
+  "_embedded": {
+    "meshProjects": [
+      {
+        "apiVersion": "v1",
+        "kind": "meshProject",
+        "metadata": {
+          "name": "test-metrics-metering-dev",
+          "ownedByCustomer": "managed-customer",
+          "createdOn": "2021-01-27T07:49:12Z"
+        },
+        "spec": {
+          "displayName": "test-metrics-metering",
+          "tags": {
+            "environment": ["dev"],
+            "confidentiality": ["public"]
+          },
+          "paymentMethodIdentifier": "managed-customer"
+        },
+        "_links": {
+          "self": {
+            "href": "http://localhost:8000/api/meshobjects/meshprojects/managed-customer.test-metrics-metering-dev"
+          },
+          "meshtenants": {
+            "href": "http://localhost:8000/api/meshobjects/meshtenants?customerIdentifier=managed-customer&projectIdentifier=test-metrics-metering-dev{&platformIdentifier}",
+            "templated": true
+          },
+          "meshusers": {
+            "href": "http://localhost:8000/api/meshobjects/meshusers?customerIdentifier=managed-customer&projectIdentifier=test-metrics-metering-dev{&platformIdentifier,customerRole,projectRole}",
+            "templated": true
+          },
+          "activePaymentMethod": {
+            "href": "http://localhost:8000/api/meshobjects/meshpaymentmethods/managed-customer"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8000/api/meshobjects/meshprojects?page=1&size=1"
+    }
+  },
+  "page": {
+    "size": 1,
+    "totalElements": 1,
+    "totalPages": 1,
+    "number": 1
+  }
+}

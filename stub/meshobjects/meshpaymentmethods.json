@@ -1,0 +1,34 @@
+{
+    "_embedded": {
+        "meshPaymentMethods": [
+            {
+                "apiVersion": "v1",
+                "kind": "meshPaymentMethod",
+                "metadata": {
+                    "name": "default",
+                    "ownedByCustomer": "managed-customer"
+                },
+                "spec": {
+                    "displayName": "Default",
+                    "tags": {}
+                },
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8000/api/meshobjects/meshpaymentmethods/default"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8000/api/meshobjects/meshpaymentmethods?page=1&size=1"
+        }
+    },
+    "page": {
+        "size": 1,
+        "totalElements": 1,
+        "totalPages": 1,
+        "number": 1
+    }
+}

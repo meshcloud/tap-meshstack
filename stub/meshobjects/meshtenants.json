@@ -1,0 +1,47 @@
+{
+  "_embedded": {
+    "meshTenants": [
+      {
+        "apiVersion": "v2",
+        "kind": "meshTenant",
+        "metadata": {
+          "ownedByProject": "tenant-import-aws-dev",
+          "ownedByCustomer": "managed-customer",
+          "platformIdentifier": "aws.aws-meshstack-dev",
+          "assignedTags": {
+            "environment": ["dev"],
+            "paymentMethodType": ["costCenter"],
+            "costCenterNumber": ["1234"],
+            "department": ["HR"],
+            "confidentiality": ["public"]
+          }
+        },
+        "spec": {
+          "localId": "602620322307",
+          "landingZoneIdentifier": "aws-without-stackset",
+          "quotas": []
+        },
+        "_links": {
+          "self": {
+            "href": "http://localhost:8000/api/meshobjects/meshtenants/managed-customer.tenant-import-aws-dev.aws.aws-meshstack-dev"
+          },
+          "meshusers": {
+            "href": "http://localhost:8000/api/meshobjects/meshusers?customerIdentifier=managed-customer&projectIdentifier=tenant-import-aws-dev&platformIdentifier=aws.aws-meshstack-dev{&customerRole,projectRole}",
+            "templated": true
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8000/api/meshobjects/meshtenants?page=1&size=1"
+    }
+  },
+  "page": {
+    "size": 1,
+    "totalElements": 1,
+    "totalPages": 1,
+    "number": 1
+  }
+}
