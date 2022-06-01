@@ -1,50 +1,50 @@
 {
-  "title": "meshCustomer",
+  "title": "meshPaymentMethod",
   "type": "object",
   "properties": {
     "metadata": {
       "type": "object",
       "properties": {
-        "deletedOn": {
+        "ownedByCustomer": {
           "type": "string",
-          "description": "If the meshCustomer has already been deleted, the <<data_types,date>> when deletion happened is provided via this field. e.g. `2020-12-22T09:37:43Z`"
+          "description": "The customerIdentifier as 'ownedByCustomer'."
         },
         "name": {
           "type": "string",
-          "description": "The customerIdentifier as 'name' to uniquely identify the meshCustomer."
-        },
-        "createdOn": {
-          "type": "string",
-          "description": "The meshCustomer has been created at this <<data_types,date>> (e.g. `2020-12-22T09:37:43Z`)."
+          "description": "The paymentMethodIdentifier as 'name'."
         }
       },
-      "description": "Always contains the 'name' to uniquely identify the meshCustomer. Can additionally contain meta information like the meshCustomer creation date."
+      "description": "Always contains the 'name' and (optional) 'ownedByCustomer' to uniquely identify the meshPaymentMethod."
     },
     "apiVersion": {
       "type": "string",
-      "description": "Version of meshCustomer datatype. Matches the version part provided within the `Accept` request header."
-    },
-    "_links": {
-      "type": "object",
-      "description": "Available links <<links>> on a meshCustomer."
+      "description": "Version of meshPaymentMethod datatype. Matches the version part provided within the `Accept` request header."
     },
     "kind": {
       "type": "string",
-      "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshCustomer' for this endpoint."
+      "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshPaymentMethod' for this endpoint."
     },
     "spec": {
       "type": "object",
       "properties": {
+        "amount": {
+          "type": "string",
+          "description": "The amount of the meshPaymentMethod."
+        },
         "displayName": {
           "type": "string",
-          "description": "The display name of the meshCustomer as it is shown in meshPanel."
+          "description": "The display name of the meshPaymentMethod as it is shown in meshPanel."
+        },
+        "expirationDate": {
+          "type": "string",
+          "description": "The expiration date <<data_types,date>> of the meshPaymentMethod."
         },
         "tags": {
           "type": "object",
-          "description": "Key/Value pairs of tags set on the meshCustomer. Keep in mind, that values are an array. Also see our general section about <<tags>>"
+          "description": "Key/Value pairs of tags set on the meshPaymentMethod. Keep in mind, that values are an array. Also see our general section about <<tags>>"
         }
       },
-      "description": "All fields in this section describe the meshCustomer."
+      "description": "All fields in this section describe the meshPaymentMethod."
     }
   }
 }

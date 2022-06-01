@@ -16,7 +16,6 @@ main() {
   extractSchema "$apiSpecFile" "meshCustomer"
   extractSchema "$apiSpecFile" "meshProject"
   extractSchema "$apiSpecFile" "meshPaymentMethod"
-  extractSchema "$apiSpecFile" "meshUser"
   extractSchema "$apiSpecFile" "meshTenant"
 }
 
@@ -24,10 +23,10 @@ extractSchema() {
     local apiSpecFile="$1"
     local meshObject="$2"
 
-    local schemaFile="tap_meshstack/schemas/${meshObject}.json"
+    local schemaFile="tap_meshstack/schemas/$meshObject.json"
 
-    echo "extracting ${meshObject} schema to ${schemaFile}"
-    (yq ".components.schemas.meshCustomer" < "$apiSpecFile") > "$schemaFile"
+    echo "extracting $meshObject schema to $schemaFile"
+    (yq ".components.schemas.$meshObject | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
 }
 
 usage() {

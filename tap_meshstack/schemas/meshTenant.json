@@ -1,50 +1,70 @@
 {
-  "title": "meshCustomer",
+  "title": "meshTenant",
   "type": "object",
   "properties": {
     "metadata": {
       "type": "object",
       "properties": {
-        "deletedOn": {
+        "ownedByProject": {
           "type": "string",
-          "description": "If the meshCustomer has already been deleted, the <<data_types,date>> when deletion happened is provided via this field. e.g. `2020-12-22T09:37:43Z`"
+          "description": "The identifier of the meshProject the meshTenant belongs to."
         },
-        "name": {
+        "ownedByCustomer": {
           "type": "string",
-          "description": "The customerIdentifier as 'name' to uniquely identify the meshCustomer."
+          "description": "The identifier of the meshCustomer the meshTenant belongs to."
         },
-        "createdOn": {
+        "assignedTags": {
+          "type": "object",
+          "description": "The tags assigned to this meshTenant originating from meshCustomer, Payment Method and meshProject. Keep in mind, that values are an array. Also see our general section about <<tags>>"
+        },
+        "platformIdentifier": {
           "type": "string",
-          "description": "The meshCustomer has been created at this <<data_types,date>> (e.g. `2020-12-22T09:37:43Z`)."
+          "description": "The identifier of the related platform instance"
         }
       },
-      "description": "Always contains the 'name' to uniquely identify the meshCustomer. Can additionally contain meta information like the meshCustomer creation date."
+      "description": "Always contains the 'ownedByProject', 'ownedByCustomer' and 'platformIdentifier' to identify the meshTenant."
     },
     "apiVersion": {
       "type": "string",
-      "description": "Version of meshCustomer datatype. Matches the version part provided within the `Accept` request header."
-    },
-    "_links": {
-      "type": "object",
-      "description": "Available links <<links>> on a meshCustomer."
+      "description": "Version of meshTenant datatype. Matches the version provided in the `Accept` request header."
     },
     "kind": {
       "type": "string",
-      "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshCustomer' for this endpoint."
+      "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshTenant' for this endpoint."
     },
     "spec": {
       "type": "object",
       "properties": {
-        "displayName": {
-          "type": "string",
-          "description": "The display name of the meshCustomer as it is shown in meshPanel."
+        "quotas": {
+          "type": "array",
+          "description": "The set of applied Tenant Quotas. They can be set individually per tenant. By default the Landing Zone quotas are applied to new meshTenants.",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          }
         },
-        "tags": {
-          "type": "object",
-          "description": "Key/Value pairs of tags set on the meshCustomer. Keep in mind, that values are an array. Also see our general section about <<tags>>"
+        "landingZoneIdentifier": {
+          "type": "string",
+          "description": "The identifier of the Landing Zone of this meshTenant. This field will be empty if the meshTenant has no Landing Zone."
+        },
+        "localId": {
+          "type": "string",
+          "description": "The localId (platform tenant id) assigned with this meshTenant. It will only be set if the tenant  was either imported via meshObject API with a localId or if at least one replication run finished successfully for this tenant."
         }
       },
-      "description": "All fields in this section describe the meshCustomer."
+      "description": "All fields in this section describe the meshTenant."
     }
   }
 }

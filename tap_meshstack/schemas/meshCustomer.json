@@ -24,10 +24,6 @@
       "type": "string",
       "description": "Version of meshCustomer datatype. Matches the version part provided within the `Accept` request header."
     },
-    "_links": {
-      "type": "object",
-      "description": "Available links <<links>> on a meshCustomer."
-    },
     "kind": {
       "type": "string",
       "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshCustomer' for this endpoint."

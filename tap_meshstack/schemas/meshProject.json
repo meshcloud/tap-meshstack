@@ -1,50 +1,58 @@
 {
-  "title": "meshCustomer",
+  "title": "meshProject",
   "type": "object",
   "properties": {
     "metadata": {
       "type": "object",
       "properties": {
+        "ownedByCustomer": {
+          "type": "string",
+          "description": "The customerIdentifier as 'ownedByCustomer'."
+        },
         "deletedOn": {
           "type": "string",
-          "description": "If the meshCustomer has already been deleted, the <<data_types,date>> when deletion happened is provided via this field. e.g. `2020-12-22T09:37:43Z`"
+          "description": "If the meshProject has already been deleted, the <<data_types,date>> when deletion happened is provided via this field. e.g. `2020-12-22T09:37:43Z`"
         },
         "name": {
           "type": "string",
-          "description": "The customerIdentifier as 'name' to uniquely identify the meshCustomer."
+          "description": "The projectIdentifier as 'name'."
         },
         "createdOn": {
           "type": "string",
-          "description": "The meshCustomer has been created at this <<data_types,date>> (e.g. `2020-12-22T09:37:43Z`)."
+          "description": "The meshProject has been created at this <<data_types,date>> (e.g. `2020-12-22T09:37:43Z`)."
         }
       },
-      "description": "Always contains the 'name' to uniquely identify the meshCustomer. Can additionally contain meta information like the meshCustomer creation date."
+      "description": "Always contains the 'name' and 'ownedByCustomer' to uniquely identify the meshProject."
     },
     "apiVersion": {
       "type": "string",
-      "description": "Version of meshCustomer datatype. Matches the version part provided within the `Accept` request header."
-    },
-    "_links": {
-      "type": "object",
-      "description": "Available links <<links>> on a meshCustomer."
+      "description": "Version of meshProject datatype. Matches the version part provided within the `Accept` request header."
     },
     "kind": {
       "type": "string",
-      "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshCustomer' for this endpoint."
+      "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshProject' for this endpoint."
     },
     "spec": {
       "type": "object",
       "properties": {
+        "substitutePaymentMethodIdentifier": {
+          "type": "string",
+          "description": "The substitutePaymentMethod of the meshProject"
+        },
+        "paymentMethodIdentifier": {
+          "type": "string",
+          "description": "The meshPaymentMethod of the meshProject."
+        },
         "displayName": {
           "type": "string",
-          "description": "The display name of the meshCustomer as it is shown in meshPanel."
+          "description": "The display name of the meshProject as it is shown in meshPanel."
         },
         "tags": {
           "type": "object",
-          "description": "Key/Value pairs of tags set on the meshCustomer. Keep in mind, that values are an array. Also see our general section about <<tags>>"
+          "description": "Key/Value pairs of tags set on the meshProject. Keep in mind, that values are an array. Also see our general section about <<tags>>"
         }
       },
-      "description": "All fields in this section describe the meshCustomer."
+      "description": "All fields in this section describe the meshProject."
     }
   }
 }

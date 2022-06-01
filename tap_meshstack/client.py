@@ -1,6 +1,6 @@
 """REST client handling, including MeshObjectStream base class."""
 
-from argparse import ArgumentError
+from typing import Any, Iterable, Optional, cast
 
 import requests
 import json
@@ -25,7 +25,7 @@ class MeshObjectStream(RESTStream):
         self.next_page_token_jsonpath = "$._links.next.href"
         self.path = f"/api/meshobjects/{self.name.lower()}"
         self.replication_key = None
-        self.records_jsonpath = f"$._embedded.${self.name}[*]" 
+        self.records_jsonpath = f"$._embedded.{self.name}[*]" 
 
     @property
     def schema(self) -> dict:
@@ -73,7 +73,6 @@ class MeshObjectStream(RESTStream):
             password=self.config.get("auth").get("password"),
         )
  
- 
     def prepare_request(
         self, context: Optional[dict], next_page_token: Optional[Any]
     ) -> requests.PreparedRequest:
@@ -119,3 +118,12 @@ class MeshObjectStream(RESTStream):
             ),
         )
         return request
+
+    def parse_response(self, response: requests.Response) -> Iterable[dict]:
+        extracted = super().parse_response(response)
+        
+        # remove _links field because its contents are not relevant for consumers (except the self-link maybe?)
+        for obj in extracted:
+            del obj["_links"]
+            yield obj
+    
