@@ -10,7 +10,7 @@ pkgs.mkShell {
   NIX_SHELL = "tap-meshstack";
   buildInputs = [
     python-with-my-packages
-    
+
     # these are used for build scripts/tools
     pkgs.yq
   ];

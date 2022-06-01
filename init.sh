@@ -8,9 +8,10 @@ set -o nounset  # exit on undefined variables
 python3 -m venv .venv
 source .venv/bin/activate
 
-pip install -r requirements.txt
+pip install poetry # we use pip only too bootstrap us into poetry
+poetry install
 
 echo ""
 echo "venv prepared, run the following command to activate it in your shell too before running any meltano commands"
 echo ""
-echo "  source .venv/bin/activate"
+echo "$  source .venv/bin/activate"
