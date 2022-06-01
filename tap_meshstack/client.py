@@ -48,9 +48,14 @@ class MeshObjectStream(RESTStream):
 
     def load_tag_schema(self, name: str) -> dict:
         """loads a valid tag schema from the tap config"""
-        tag_schema = self.config["tag_schemas"].get(name)
+        tag_schema = self.config and self.config["tag_schemas"].get(name)
         if tag_schema is None: 
-            raise Exception(f"tap config did not specify mandatory key tag_schemas.${name}")
+            self.logger.warning(f"tap config did not specify the key tag_schemas.${name}. Assuming an empty tag schema instead")
+            tag_schema = {
+                'type': 'object',
+                'required': [],
+                'properties': {}
+            }
 
         return tag_schema
 
