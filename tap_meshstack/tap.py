@@ -14,7 +14,7 @@ from tap_meshstack.streams import (
 )
 
 STREAM_TYPES = [
-    # MeshChargebackStatementsStream,
+    MeshChargebackStatementsStream,
     MeshPaymentMethodsStream,
     MeshCustomersStream,
     MeshProjectsStream,

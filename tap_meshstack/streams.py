@@ -11,8 +11,21 @@ from tap_meshstack.client import KrakenMeshObjectStream
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
 class MeshChargebackStatementsStream(KrakenMeshObjectStream):
-    name = "meshChargebackStatements"
+    name = "meshChargeback"
     name_singular = "meshChargebackStatement"
+
+    # unfortunately needs an override, because the name + name_singular pattern
+    # is not applicable here. (for tag_schema loading it is fitting.)
+    def __init__(
+        self,
+        tap: TapBaseClass,
+    ) -> None:
+        super().__init__(tap=tap)
+
+        self.next_page_token_jsonpath = "$._links.next.href"
+        self.path = f"/api/meshobjects/meshchargeback"
+        self.replication_key = None
+        self.records_jsonpath = f"$._embedded.meshChargebacks[*]"
 
 class MeshPaymentMethodsStream(FederationMeshObjectStream):
     name = "meshPaymentMethods"
