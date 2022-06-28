@@ -53,6 +53,12 @@ class TapMeshStack(Tap):
             description="The url of the meshObject API (excluding the /api prefix!)"
         ),
         th.Property(
+            "kraken_api_url",
+            th.StringType,
+            required=True,
+            description="The url of the meshObject Kraken API (excluding the /api prefix!)"
+        ),
+        th.Property(
             "tag_schemas",
             th.ObjectType(
                  th.Property(

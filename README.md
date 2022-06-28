@@ -23,6 +23,7 @@ plugins:
 ### Accepted Config Options
 
 - `api_url`: meshStack API URL
+- `kraken_api_url`: meshStack Kraken API URL
 - `auth`: authentication options, see [Authorization](#source-authentication-and-authorization)
   - `username`: basic auth username
   - `password`: basic auth password (plaintext)

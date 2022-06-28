@@ -17,6 +17,7 @@ SAMPLE_CONFIG = {
         "password": "password",
     },
     "api_url": "http://localhost:8000",
+    "kraken_api_url": "http://localhost:8091",
     "tag_schemas": {}
 }
 

@@ -1,0 +1,70 @@
+{
+  "_embedded": {
+      "meshChargebacks": [
+          {
+              "apiVersion": "v1",
+              "kind": "meshChargeback",
+              "metadata": {
+                  "name": "2022-06-06Z/demo-partner:unipipe-video:unipipe-service-broker-dev",
+                  "createdOn": "2022-06-28T08:39:46.950195Z"
+              },
+              "spec": {
+                  "customerIdentifier": "unipipe-video",
+                  "projectIdentifier": "unipipe-service-broker-dev",
+                  "partnerIdentifier": "demo-partner",
+                  "period": "2022-06-06Z",
+                  "tags": {}
+              },
+              "status": {
+                  "timeframe": {
+                      "from": "2022-06-06T00:00:00Z",
+                      "to": "2022-07-06T00:00:00Z"
+                  },
+                  "lineItems": [
+                      {
+                          "reportCategory": "BILLING",
+                          "platformTenantId": "f7d81ca9-2a8e-4e11-b4b6-d9128223c4d1",
+                          "platformIdentifier": "azure.meshcloud-azure-dev",
+                          "reportId": "TenantUsageReports/azure.meshcloud-azure-dev:f7d81ca9-2a8e-4e11-b4b6-d9128223c4d1:2021-05-01Z",
+                          "entryDate": "2022-04-29T07:05:18.253288Z",
+                          "netAmount": 35.07,
+                          "currency": "EUR",
+                          "sellerId": "meshcloud"
+                      }
+                  ],
+                  "netAmounts": [
+                      {
+                          "currency": "EUR",
+                          "amount": 35.07
+                      }
+                  ]
+              },
+              "_links": {
+                  "self": {
+                      "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback/2022-06-06Z/demo-partner:unipipe-video:unipipe-service-broker-dev"
+                  }
+              }
+          }
+      ]
+  },
+  "_links": {
+      "first": {
+          "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback?period=2022-06-06Z&page=0&size=1"
+      },
+      "self": {
+          "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback?period=2022-06-06Z&size=1"
+      },
+      "next": {
+          "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback?period=2022-06-06Z&page=1&size=1"
+      },
+      "last": {
+          "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback?period=2022-06-06Z&page=30&size=1"
+      }
+  },
+  "page": {
+      "size": 1,
+      "totalElements": 31,
+      "totalPages": 31,
+      "number": 0
+  }
+}

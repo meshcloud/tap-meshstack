@@ -4,6 +4,7 @@
     "password": "59lmkPgbLaS3WHo1"
   },
   "api_url": "https://federation.dev.meshcloud.io",
+  "kraken_api_url": "https://kraken.dev.meshcloud.io",
   "tag_schemas": {
     "meshChargebackStatement": {
       "type": "object",

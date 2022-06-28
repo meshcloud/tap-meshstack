@@ -12,6 +12,11 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 class MeshChargebackStatementsStream(MeshObjectStream):
     name = "meshChargebackStatements"
     name_singular = "meshChargebackStatement"
+
+    @property
+    def url_base(self) -> str:
+        """Return the Kraken API URL root, configurable via tap settings."""
+        return self.config["kraken_api_url"]
     
     def apply_tag_schemas(self, schema) -> dict:
         # chargeback statements have nested line items, that also have a tag schema
