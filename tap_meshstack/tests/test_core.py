@@ -12,12 +12,20 @@ from singer_sdk.testing import get_standard_tap_tests
 from tap_meshstack.tap import TapMeshStack
 
 SAMPLE_CONFIG = {
-    "auth": {
-        "username" : "user",
-        "password": "password",
+    "federation": {
+        "auth": {
+            "username" : "user",
+            "password": "password"
+        },
+        "api_url": "http://localhost:8000"
     },
-    "api_url": "http://localhost:8000",
-    "kraken_api_url": "http://localhost:8091",
+    "kraken": {
+        "auth": {
+            "username" : "user",
+            "password": "password"
+        },
+        "api_url": "http://localhost:8091"
+    },
     "tag_schemas": {}
 }
 

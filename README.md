@@ -21,12 +21,16 @@ plugins:
 ## Configuration
 
 ### Accepted Config Options
-
-- `api_url`: meshStack API URL
-- `kraken_api_url`: meshStack Kraken API URL
-- `auth`: authentication options, see [Authorization](#source-authentication-and-authorization)
-  - `username`: basic auth username
-  - `password`: basic auth password (plaintext)
+- `federation`: meshStack federation config
+  - `api_url`: meshStack federation API URL
+  - `auth`: authentication options, see [Authorization](#source-authentication-and-authorization)
+    - `username`: basic auth username
+    - `password`: basic auth password (plaintext)
+- `kraken`: meshStack kraken config
+  - `api_url`: meshStack kraken API URL
+  - `auth`: authentication options, see [Authorization](#source-authentication-and-authorization)
+    - `username`: basic auth username
+    - `password`: basic auth password (plaintext)
 - `tag_schemas`: see [meshObject Tag Schemas](#meshobject-tag-schemas)
 
 A full list of supported settings and capabilities for this tap is available by running:

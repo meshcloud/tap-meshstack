@@ -1,10 +1,18 @@
 {
-  "auth": {
-    "username": "meshctl",
-    "password": "59lmkPgbLaS3WHo1"
+  "federation": {
+    "auth": {
+      "username": "meshctl",
+      "password": "59lmkPgbLaS3WHo1"
+    },
+    "api_url": "https://federation.dev.meshcloud.io"
   },
-  "api_url": "https://federation.dev.meshcloud.io",
-  "kraken_api_url": "https://kraken.dev.meshcloud.io",
+  "kraken": {
+    "auth": {
+      "username": "meshctl",
+      "password": "59lmkPgbLaS3WHo1"
+    },
+    "api_url": "https://kraken.dev.meshcloud.io"
+  },
   "tag_schemas": {
     "meshChargebackStatement": {
       "type": "object",
@@ -65,6 +73,6 @@
       "required": [],
       "properties": {
       }
-    },
+    }
   }
 }

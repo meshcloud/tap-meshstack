@@ -28,35 +28,68 @@ class TapMeshStack(Tap):
 
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "auth",
+            "federation",
             th.ObjectType(
                 th.Property(
-                    "username",
-                    th.StringType,
+                    "auth",
+                    th.ObjectType(
+                        th.Property(
+                            "username",
+                            th.StringType,
+                            required=True,
+                            description="The HTTP basic auth user to authenticate against the meshObject API for federation"
+                        ),
+                        th.Property(
+                            "password",
+                            th.StringType,
+                            required=True,
+                            description="The HTTP basic auth password to authenticate against the meshObject API for federation"
+                        ),
+                    ),
                     required=True,
-                      description="The HTTP basic auth user to authenticate against the meshObject API"
+                    description="API authentication configuration",
                 ),
                 th.Property(
-                    "password",
+                    "api_url",
                     th.StringType,
                     required=True,
-                    description="The HTTP basic auth password to authenticate against the meshObject API"
+                    description="The url of the meshObject API (excluding the /api prefix!)"
                 ),
             ),
             required=True,
-            description="API authentication configuration",
+            description="Configuration for Federation",
         ),
         th.Property(
-            "api_url",
-            th.StringType,
+            "kraken",
+            th.ObjectType(
+                th.Property(
+                    "auth",
+                    th.ObjectType(
+                        th.Property(
+                            "username",
+                            th.StringType,
+                            required=True,
+                            description="The HTTP basic auth user to authenticate against the meshObject API for kraken"
+                        ),
+                        th.Property(
+                            "password",
+                            th.StringType,
+                            required=True,
+                            description="The HTTP basic auth password to authenticate against the meshObject API for kraken"
+                        ),
+                    ),
+                    required=True,
+                    description="API authentication configuration",
+                ),
+                th.Property(
+                    "api_url",
+                    th.StringType,
+                    required=True,
+                    description="The url of the meshObject API (excluding the /api prefix!)"
+                ),
+            ),
             required=True,
-            description="The url of the meshObject API (excluding the /api prefix!)"
-        ),
-        th.Property(
-            "kraken_api_url",
-            th.StringType,
-            required=True,
-            description="The url of the meshObject Kraken API (excluding the /api prefix!)"
+            description="Configuration for Kraken",
         ),
         th.Property(
             "tag_schemas",
