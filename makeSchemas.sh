@@ -11,12 +11,18 @@ RED='\033[0;31m'
 
 main() {
   local apiSpecFile="${1:-}"
-  if [[ -z $apiSpecFile ]]; then usage "openapi.yaml file argument missing"; fi;
+  local krakenApiSpecFile="${2:-}"
+  if [[ -z $apiSpecFile ]]; then usage "openapi.yaml file argument for meshfed missing"; fi;
+  if [[ -z $krakenApiSpecFile ]]; then usage "openapi.yaml file argument for kraken missing"; fi;
 
+  # meshfed-api
   extractSchema "$apiSpecFile" "meshCustomer"
   extractSchema "$apiSpecFile" "meshProject"
   extractSchema "$apiSpecFile" "meshPaymentMethod"
   extractSchema "$apiSpecFile" "meshTenant"
+
+  # kraken-api
+  extractSchema "$krakenApiSpecFile" "meshChargeback"
 }
 
 extractSchema() {
@@ -26,16 +32,14 @@ extractSchema() {
     local schemaFile="tap_meshstack/schemas/$meshObject.json"
 
     echo "extracting $meshObject schema to $schemaFile"
-    (yq ".components.schemas.$meshObject | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
+    (yq -o "json" ".components.schemas.$meshObject | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
 }
 
 usage() {
-  if [[ -n $1 ]]; then
-    echo -e "${RED}👉 $1${CLEAR}\n";
-  fi
-  echo "Usage: $0 <openapi.yaml>"
+  echo -e "${RED}👉 $1${CLEAR}\n";
+  echo "Usage: $0 <openapiForMeshfed.yaml>  <openapiForKraken.yaml>"
   echo ""
-  echo "Example: $0 ./openapi.yaml"
+  echo "Example: $0 openapiForMeshfed.yaml openapiForKraken.yaml"
   exit 1
 }
 

@@ -1,0 +1,136 @@
+{
+  "title": "meshChargeback",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "A name a meshChargeback can be uniquely identified with."
+        },
+        "createdOn": {
+          "type": "string",
+          "description": "Creation Date of the meshChargeback."
+        }
+      },
+      "description": "Contains attributes to identify a meshChargeback."
+    },
+    "apiVersion": {
+      "type": "string",
+      "description": "Version of meshTenant datatype. Matches the version provided in the `Accept` request header."
+    },
+    "kind": {
+      "type": "string",
+      "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshChargeback' for this endpoint."
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "partnerIdentifier": {
+          "type": "string",
+          "description": "The meshPartner the meshCustomer of this meshChargeback belongs to."
+        },
+        "period": {
+          "type": "string",
+          "description": "The period of the meshChargeback, e.g. '2022-01-06Z'."
+        },
+        "customerIdentifier": {
+          "type": "string",
+          "description": "The meshCustomer identifier this meshChargeback belongs to."
+        },
+        "projectIdentifier": {
+          "type": "string",
+          "description": "The meshProject identifier this meshChargeback belongs to."
+        },
+        "tags": {
+          "type": "object",
+          "description": "Key/Value pairs associated with this meshChargeback. This includes meshCustomer, meshProject & meshPaymentMethod tags. Additionally metadata like paymentMethod attributes are provided."
+        }
+      },
+      "description": "All fields in this section describe the meshChargeback."
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "lineItems": {
+          "type": "array",
+          "description": "List of all tenant usage reports that have been booked on a meshChargeback. One lineItem is created per Tenant Usage Report and currency.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sellerId": {
+                "type": "string",
+                "description": "SellerId configured in meshStack for certain meshPlatforms or even specific products within a platform. This can be used to identify the department or group inside your company the netAmount will be charged to."
+              },
+              "platformTenantId": {
+                "type": "string",
+                "description": "Id of the actual platform tenant in the cloud platform (e.g. AWS Account Id or OpenShift Project Id)."
+              },
+              "reportId": {
+                "type": "string",
+                "description": "Id of the Tenant Usage Report this lineItem relates to."
+              },
+              "netAmount": {
+                "type": "number",
+                "description": "Total cost associated with the given Tenant Usage Report for one currency."
+              },
+              "entryDate": {
+                "type": "string",
+                "description": "Date when the usage report was actually finalized and not modified anymore afterwards."
+              },
+              "reportCategory": {
+                "type": "string",
+                "description": "Tenant Usage Reports can either belong to category BILLING or ENVIRONMENTAL. This separation is needed as this kind of different data is provided in quite different time intervals."
+              },
+              "currency": {
+                "type": "string",
+                "description": "Currency for the netAmount listed in this lineItem. Multiple lineItems are created if a Tenant Usage Report has costs distributed across multiple currencies."
+              },
+              "sellerProductGroup": {
+                "type": "string",
+                "description": "With the sellerProductGroup the seller information can be further refined. This is for example used to identify the different service brokers used in the meshMarketplace."
+              },
+              "platformIdentifier": {
+                "type": "string",
+                "description": "meshStack identifier of the platform the tenant belongs to."
+              }
+            }
+          }
+        },
+        "netAmounts": {
+          "type": "array",
+          "description": "NetAmounts per currency are provided here.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "number",
+                "description": "The actual cost associated with the given currency."
+              },
+              "currency": {
+                "type": "string",
+                "description": "Currency belonging to the netAmount."
+              }
+            }
+          }
+        },
+        "timeframe": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string",
+              "description": "At which point in time the period started (usually beginning of month)."
+            },
+            "to": {
+              "type": "string",
+              "description": "Before which point in time the period ended (usually beginning of next month)."
+            }
+          },
+          "description": "This provides actual details about the period the meshCHargeback was generated for."
+        }
+      },
+      "description": "All fields in this section provide detailed content of the meshChargeback."
+    }
+  }
+}
