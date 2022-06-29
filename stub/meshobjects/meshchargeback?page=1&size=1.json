@@ -41,7 +41,7 @@
               },
               "_links": {
                   "self": {
-                      "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback/2022-06-06Z/demo-partner:unipipe-video:unipipe-service-broker-dev"
+                      "href": "http://localhost:8000/api/meshobjects/meshchargeback/2022-06-06Z/demo-partner:unipipe-video:unipipe-service-broker-dev"
                   }
               }
           }
@@ -49,22 +49,19 @@
   },
   "_links": {
       "first": {
-          "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback?period=2022-06-06Z&page=0&size=1"
+          "href": "http://localhost:8000/api/meshobjects/meshchargeback?page=0&size=1"
       },
       "self": {
-          "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback?period=2022-06-06Z&size=1"
+          "href": "http://localhost:8000/api/meshobjects/meshchargeback?page=0&size=1"
       },
-      "next": {
-          "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback?period=2022-06-06Z&page=1&size=1"
-      },
-      "last": {
-          "href": "https://kraken.dev.meshcloud.io/api/meshobjects/meshchargeback?period=2022-06-06Z&page=30&size=1"
+      "prev": {
+          "href": "http://localhost:8000/api/meshobjects/meshchargeback?page=0&size=1"
       }
   },
   "page": {
       "size": 1,
-      "totalElements": 31,
-      "totalPages": 31,
-      "number": 0
+      "totalElements": 2,
+      "totalPages": 2,
+      "number": 1
   }
 }
