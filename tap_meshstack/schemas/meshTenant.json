@@ -37,23 +37,7 @@
       "properties": {
         "quotas": {
           "type": "array",
-          "description": "The set of applied Tenant Quotas. They can be set individually per tenant. By default the Landing Zone quotas are applied to new meshTenants.",
-          "items": {
-            "oneOf": [
-              {
-                "type": "object"
-              },
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "string"
-              },
-              {
-                "type": "number"
-              }
-            ]
-          }
+          "description": "The set of applied Tenant Quotas. They can be set individually per tenant. By default the Landing Zone quotas are applied to new meshTenants."
         },
         "landingZoneIdentifier": {
           "type": "string",

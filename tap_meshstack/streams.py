@@ -59,6 +59,6 @@ class MeshTenantsStream(FederationMeshObjectStream):
     name_singular = "meshTenant"
    
     def apply_tag_schemas(self, schema) -> dict:
-        schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
-
+        schema["properties"]["metadata"]["properties"]["assignedTags"] = self.load_tag_schema(self.name_singular)
+    
         return schema
