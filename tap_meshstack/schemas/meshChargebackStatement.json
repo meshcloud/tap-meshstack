@@ -43,12 +43,6 @@
           "type": "string",
           "description": "The meshProject identifier this meshChargeback belongs to."
         }
-        // If the ChargebackStatement has no tags defined this block must be exluded
-        // ,
-        // "tags": {
-        //   "type": ["null", "object"],
-        //   "description": "Key/Value pairs associated with this meshChargeback. This includes meshCustomer, meshProject & meshPaymentMethod tags. Additionally metadata like paymentMethod attributes are provided."
-        // }
       },
       "description": "All fields in this section describe the meshChargeback."
     },
