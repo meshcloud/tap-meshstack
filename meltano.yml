@@ -10,15 +10,73 @@ plugins:
     - state
     - catalog
     - discover
+    # TODO: please configure your meshObjects you want to add to the data ware house
+    select:
+      - meshCustomers.*
+      - meshProjects.*
+      - meshPaymentMethods.*
+      - meshTenants.*
+      - meshChargeback.*
+      # TODO (dev): meshTenantUsageReports are not implemented yet - please use the Chargeback preview feature in the meantime
+      #- meshTenantUsageReports.*
     config:
+      # TODO: Configure tap-meshstack extractor to your needs
+      # TODO: Authentification for federation and kraken endpoint
+      # TODO: Configure the tag schemas for each meshObject
+      federation:
+        auth:
+          username: $TAP_MESHSTACK_FEDERATION_USERNAME
+          password: $TAP_MESHSTACK_FEDERATION_PASSWORD
+        api_url: $TAP_MESHSTACK_FEDERATION_URL
+      kraken:
+        auth:
+          username: $TAP_MESHSTACK_KRAKEN_USERNAME
+          password: $TAP_MESHSTACK_KRAKEN_PASSWORD
+        api_url: $TAP_MESHSTACK_KRAKEN_URL
+      tag_schemas:
+        meshCustomer:
+          properties:
+            environment:
+              type: array
+            Test:
+              type: array
+          type: object
+        meshPaymentMethod:
+          properties:
+            Country:
+              type: array
+            costCenterNumber:
+              type: array
+            department:
+              type: array
+            paymentMethodType:
+              type: array
+          type: object
+        meshProject:
+          properties:
+            SecurityOwner:
+              type: array
+            confidentiality:
+              type: array
+            environment:
+              type: array
+          type: object
+        meshTenant:
+          properties:
+            environment:
+              type: array
+            department:
+              type: array
+            confidentiality:
+              type: array
+            SecurityContact:
+              type: array
+          type: object
+        meshUser:
+          type: object
+        meshChargeback:
+          type: object
       start_date: '2010-01-01T00:00:00Z'
-    settings:
-    # TODO: To configure using Meltano, declare settings and their types here:
-    - name: username
-    - name: password
-      kind: password
-    - name: start_date
-      value: '2010-01-01T00:00:00Z'
   loaders:
   - name: target-jsonl
     variant: andyh1203
