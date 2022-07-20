@@ -12,13 +12,13 @@ SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
 class MeshChargebackStatementsStream(KrakenMeshObjectStream):
     # to refactor
-    name = "meshChargeback" #->meshChargebacks
-    name_singular = "meshChargebackStatement" #->meshChargeback
+    name = "meshChargebacks"
+    name_singular = "meshChargeback"
 
     def apply_tag_schemas(self, schema) -> dict:
         tags=self.load_tag_schema(self.name_singular)
         # check if tag is an empty array
-        # true: remove tags from schema
+        # true: remove tags from schemameshChargeback >> can't handle empty records 
         # false: load tags schema from configuration
         if tags["properties"] == {}:
             # tags must be removed from schema as empty RECORDS cannot be handled by meltano loader like big-query
@@ -27,20 +27,6 @@ class MeshChargebackStatementsStream(KrakenMeshObjectStream):
         
         schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
         return schema
-    
-    
-    # unfortunately needs an override, because the name + name_singular pattern
-    # is not applicable here. (for tag_schema loading it is fitting.)
-    def __init__(
-        self,
-        tap: TapBaseClass,
-    ) -> None:
-        super().__init__(tap=tap)
-
-        self.next_page_token_jsonpath = "$._links.next.href"
-        self.path = f"/api/meshobjects/meshchargeback"
-        self.replication_key = None
-        self.records_jsonpath = f"$._embedded.meshChargebacks[*]"
 
 class MeshPaymentMethodsStream(FederationMeshObjectStream):
     name = "meshPaymentMethods"

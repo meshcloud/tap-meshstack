@@ -95,10 +95,10 @@ class TapMeshStack(Tap):
             "tag_schemas",
             th.ObjectType(
                  th.Property(
-                    "meshChargebackStatement",
+                    "meshChargeback",
                     th.ObjectType(),
                     required=False,
-                    description="JSON schema for meshChargebackStatement tags"
+                    description="JSON schema for meshChargeback tags"
                 ),
                 th.Property(
                     "meshTenantUsageReport",

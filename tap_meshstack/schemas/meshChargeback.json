@@ -45,7 +45,7 @@
         },
         "tags": {
           "type": "object",
-          "description": "Key/Value pairs of tags set on the meshCustomer. Keep in mind, that values are an array. Also see our general section about <<tags>>"
+          "description": "Key/Value pairs of tags set on the meshChargeback."
         }
       },
       "description": "All fields in this section describe the meshChargeback."

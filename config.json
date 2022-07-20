@@ -14,7 +14,7 @@
     "api_url": "https://kraken.dev.meshcloud.io"
   },
   "tag_schemas": {
-    "meshChargebackStatement": {
+    "meshChargeback": {
       "type": "object",
       "required": [],
       "properties": {

@@ -16,7 +16,7 @@ plugins:
       - meshProjects.*
       - meshPaymentMethods.*
       - meshTenants.*
-      - meshChargeback.*
+      - meshChargebacks.*
       # TODO (dev): meshTenantUsageReports are not implemented yet - please use the Chargeback preview feature in the meantime
       #- meshTenantUsageReports.*
     config:

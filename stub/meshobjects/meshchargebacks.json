@@ -41,7 +41,7 @@
               },
               "_links": {
                   "self": {
-                      "href": "http://localhost:8000/api/meshobjects/meshchargeback/2022-06-06Z/demo-partner:unipipe-video:unipipe-service-broker-dev"
+                      "href": "http://localhost:8000/api/meshobjects/meshchargebacks/2022-06-06Z/demo-partner:unipipe-video:unipipe-service-broker-dev"
                   }
               }
           }
@@ -49,19 +49,22 @@
   },
   "_links": {
       "first": {
-          "href": "http://localhost:8000/api/meshobjects/meshchargeback?page=0&size=1"
+          "href": "http://localhost:8000/api/meshobjects/meshchargebacks?page=0&size=1"
       },
       "self": {
-          "href": "http://localhost:8000/api/meshobjects/meshchargeback?page=0&size=1"
+          "href": "http://localhost:8000/api/meshobjects/meshchargebacks?size=1"
       },
-      "prev": {
-          "href": "http://localhost:8000/api/meshobjects/meshchargeback?page=0&size=1"
+      "next": {
+          "href": "http://localhost:8000/api/meshobjects/meshchargebacks?page=1&size=1"
+      },
+      "last": {
+          "href": "http://localhost:8000/api/meshobjects/meshchargebacks?page=1&size=1"
       }
   },
   "page": {
       "size": 1,
       "totalElements": 2,
       "totalPages": 2,
-      "number": 1
+      "number": 0
   }
 }

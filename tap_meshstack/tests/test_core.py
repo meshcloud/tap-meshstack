@@ -14,14 +14,14 @@ from tap_meshstack.tap import TapMeshStack
 SAMPLE_CONFIG = {
     "federation": {
         "auth": {
-            "username" : "user",
+            "username": "user",
             "password": "password"
         },
         "api_url": "http://localhost:8000"
     },
     "kraken": {
         "auth": {
-            "username" : "user",
+            "username": "user",
             "password": "password"
         },
         "api_url": "http://localhost:8000"
