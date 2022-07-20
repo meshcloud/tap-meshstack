@@ -42,6 +42,10 @@
         "projectIdentifier": {
           "type": "string",
           "description": "The meshProject identifier this meshChargeback belongs to."
+        },
+        "tags": {
+          "type": "object",
+          "description": "Key/Value pairs of tags set on the meshCustomer. Keep in mind, that values are an array. Also see our general section about <<tags>>"
         }
       },
       "description": "All fields in this section describe the meshChargeback."

@@ -34,6 +34,7 @@ plugins:
           password: $TAP_MESHSTACK_KRAKEN_PASSWORD
         api_url: $TAP_MESHSTACK_KRAKEN_URL
       tag_schemas:
+      # TODO: add meshChargebackStatement tag schema if applicable. If no tag schema configured in meshStack delete the meshChargebackStatement tag configuration
         meshCustomer:
           properties:
             environment:
@@ -73,8 +74,6 @@ plugins:
               type: array
           type: object
         meshUser:
-          type: object
-        meshChargeback:
           type: object
       start_date: '2010-01-01T00:00:00Z'
   loaders:
