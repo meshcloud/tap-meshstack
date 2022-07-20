@@ -11,9 +11,24 @@ from tap_meshstack.client import KrakenMeshObjectStream
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
 class MeshChargebackStatementsStream(KrakenMeshObjectStream):
-    name = "meshChargeback"
-    name_singular = "meshChargebackStatement"
+    # to refactor
+    name = "meshChargeback" #->meshChargebacks
+    name_singular = "meshChargebackStatement" #->meshChargeback
 
+    def apply_tag_schemas(self, schema) -> dict:
+        tags=self.load_tag_schema(self.name_singular)
+        # check if tag is an empty array
+        # true: remove tags from schema
+        # false: load tags schema from configuration
+        if tags["properties"] == {}:
+            # tags must be removed from schema as empty RECORDS cannot be handled by meltano loader like big-query
+            del schema["properties"]["spec"]["properties"]["tags"]
+            return schema
+        
+        schema["properties"]["spec"]["properties"]["tags"] = self.load_tag_schema(self.name_singular)
+        return schema
+    
+    
     # unfortunately needs an override, because the name + name_singular pattern
     # is not applicable here. (for tag_schema loading it is fitting.)
     def __init__(
