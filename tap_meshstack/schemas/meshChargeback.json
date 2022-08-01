@@ -91,7 +91,7 @@
                 "type": "string",
                 "description": "With the sellerProductGroup the seller information can be further refined. This is for example used to identify the different service brokers used in the meshMarketplace."
               },
-              "platformIdentifier": {
+              "platformFullIdentifier": {
                 "type": "string",
                 "description": "meshStack identifier of the platform the tenant belongs to."
               }

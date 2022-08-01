@@ -24,7 +24,7 @@
                       {
                           "reportCategory": "BILLING",
                           "platformTenantId": "f7d81ca9-2a8e-4e11-b4b6-d9128223c4d1",
-                          "platformIdentifier": "azure.meshcloud-azure-dev",
+                          "platformFullIdentifier": "azure.meshcloud-azure-dev",
                           "reportId": "TenantUsageReports/azure.meshcloud-azure-dev:f7d81ca9-2a8e-4e11-b4b6-d9128223c4d1:2021-05-01Z",
                           "entryDate": "2022-04-29T07:05:18.253288Z",
                           "netAmount": 35.07,
