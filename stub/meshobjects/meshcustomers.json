@@ -10,7 +10,9 @@
               },
               "spec": {
                   "displayName": "admin-customer",
-                  "tags": {}
+                  "tags": {
+                      "environment": ["dev", "prod"]
+                  }
               },
               "_links": {
                   "self": {

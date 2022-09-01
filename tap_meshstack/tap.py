@@ -21,7 +21,6 @@ STREAM_TYPES = [
     MeshTenantsStream,
 ]
 
-
 class TapMeshStack(Tap):
     """meshStack tap class."""
     name = "tap-meshstack"
@@ -90,48 +89,7 @@ class TapMeshStack(Tap):
             ),
             required=True,
             description="Configuration for Kraken",
-        ),
-        th.Property(
-            "tag_schemas",
-            th.ObjectType(
-                 th.Property(
-                    "meshChargeback",
-                    th.ObjectType(),
-                    required=False,
-                    description="JSON schema for meshChargeback tags"
-                ),
-                th.Property(
-                    "meshTenantUsageReport",
-                    th.ObjectType(
-                    ),
-                    required=False,
-                    description="JSON schema for meshTenantUsageReport tags"
-                ),
-                th.Property(
-                    "meshCustomer",
-                    th.ObjectType(
-                    ),
-                    required=False,
-                    description="JSON schema for meshCustomer tags"
-                ),
-                th.Property(
-                    "meshProject",
-                    th.ObjectType(
-                    ),
-                    required=False,
-                    description="JSON schema for meshProject tags"
-                ),
-                th.Property(
-                    "meshTenant",
-                    th.ObjectType(
-                    ),
-                    required=False,
-                    description="JSON schema for meshTenant tags"
-                ),
-            ),
-            required=True,
-            description="JSON Schema for meshObject tags. The tap needs schemas for every object that's part of a consumed stream.",
-        ),
+        )
     ).to_dict()
 
     def discover_streams(self) -> List[Stream]:

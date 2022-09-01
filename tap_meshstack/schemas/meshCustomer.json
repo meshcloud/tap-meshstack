@@ -36,8 +36,15 @@
           "description": "The display name of the meshCustomer as it is shown in meshPanel."
         },
         "tags": {
-          "type": "object",
-          "description": "Key/Value pairs of tags set on the meshCustomer. Keep in mind, that values are an array. Also see our general section about <<tags>>"
+          "type": "array",
+          "description": "Key/Value pairs of tags set on the meshCustomer. Keep in mind, that values are an array. Also see our general section about <<tags>>",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string" },
+              "values": { "type": "array", "items": { "type": "string" } }
+            }
+          }
         }
       },
       "description": "All fields in this section describe the meshCustomer."

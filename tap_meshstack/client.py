@@ -7,11 +7,25 @@ import json
 from pathlib import Path
 from typing import Any, Optional, cast
 
+from singer_sdk import typing as th  # JSON schema typing helpers
 from singer_sdk.streams import RESTStream
 from singer_sdk.authenticators import BasicAuthenticator
 from singer_sdk.plugin_base import PluginBase as TapBaseClass
 
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
+
+MESHOBJECT_TAGS_SCHEMA = th.ArrayType(
+    th.ObjectType(
+        th.Property("key", th.StringType, required=True),
+        th.Property(
+            "values", 
+            th.ArrayType(th.StringType),
+            description="meshObject tag values are always arrays, even if they just contain a single element.",
+            required=True
+        )
+    )
+).to_dict()
+ 
 
 class MeshObjectStream(RESTStream):
     """meshStack meshObject stream class."""
@@ -42,23 +56,12 @@ class MeshObjectStream(RESTStream):
         
         return schema
     
-    def apply_tag_schemas(self, schema) -> dict:
+    def apply_tag_schemas(self, schema):
         """applies tag schemas to a meshObject schema"""
-        return schema
 
-    def load_tag_schema(self, name: str) -> dict:
-        """loads a valid tag schema from the tap config"""
-        tag_schema = self.config and self.config["tag_schemas"].get(name)
-        if tag_schema is None: 
-            self.logger.warning(f"tap config did not specify the key tag_schemas.${name}. Assuming an empty tag schema instead")
-            tag_schema = {
-                'type': 'object',
-                'required': [],
-                'properties': {}
-            }
+        # by default most meshObjects have tags in spec.tags - override if this is not true
+        schema["properties"]["spec"]["properties"]["tags"] = MESHOBJECT_TAGS_SCHEMA
 
-        return tag_schema
- 
     def prepare_request(
         self, context: Optional[dict], next_page_token: Optional[Any]
     ) -> requests.PreparedRequest:
@@ -108,11 +111,23 @@ class MeshObjectStream(RESTStream):
     def parse_response(self, response: requests.Response) -> Iterable[dict]:
         extracted = super().parse_response(response)
         
-        # remove _links field because its contents are not relevant for consumers (except the self-link maybe?)
         for obj in extracted:
+            # remove _links field because its contents are not relevant for consumers (except the self-link maybe?)
             del obj["_links"]
+            
+            self.transform_record(obj)
+            
             yield obj
 
+    def transform_record(self, record: dict):
+        """
+        Transforms a record from the REST API representation to a more ELT friendly representation. 
+        Most notably, transform tag properties to a predictable json schema.
+        """
+        record["spec"]["tags"] = self.transform_meshobject_tags(record["spec"]["tags"])
+        
+    def transform_meshobject_tags(self, tags: dict):
+        return [{"key": k, "values": v} for k, v in tags.items()]
 
 class FederationMeshObjectStream(MeshObjectStream):
     """meshStack meshObject stream class for federation."""

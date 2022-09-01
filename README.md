@@ -44,37 +44,54 @@ tap-meshstack --about
 The tap supports meshStack API authentication with HTTP Basic auth. Please review the official meshStack API documentation
 section on [API Authentication](https://docs.meshcloud.io/api#authentication) how you can configure the required access.
 
-### meshObject Tag Schemas
+### meshObject Representation in Records
 
-The tap needs to understand your [meshObject tag](https://docs.meshcloud.io/docs/meshstack.metadata-tags.html) configuration
-in order to emit correct the schemas and records into singer streams. You therefore have to supply a JSON schema
-of supported tags for each meshObject type you wish to read a stream for. Here's an example:
+The tap transforms your [meshObject tags](https://docs.meshcloud.io/docs/meshstack.metadata-tags.html) to a generic
+key-values representation that's suitable for ETL. This is required so that ETL pipelines that expect static record
+schemas can more handle easily handle the dynamic schema nature of tags. 
 
-```yaml
-tag_schemas:
-  meshProject:
-    properties:
-      environment:
-        items:
-          oneOf:
-          - description: prod
-            enum:
-            - prod
-          - description: dev
-            enum:
-            - dev
-          type: string
-        type: array
-  meshPaymentMethod:
-    properties:
-      costCenterNumber:
-        type: string
-      department:
-        type: string
+> Note that meshObject tag schemas can also be different from object to object in the same collection.
+
+Consider the following example to understand how the transformation works. The `meshCustomer` has the following
+JSON representation in the meshObject API:
+
+```json
+{
+  "apiVersion": "v1",
+  "kind": "meshCustomer",
+  "metadata": {
+      "name": "customer",
+      "createdOn": "2021-01-25T10:28:38Z"
+  },
+  "spec": {
+      "displayName": "admin-customer",
+      "tags": {
+          "environment": ["dev", "prod"]
+      }
+  }
+}
 ```
 
-> There's a helper script `tags.py` that can help you build a tag configuration from meshStack's _private_ API.
-> Please contact us for help about this. We are considering options to improve this process in the future.
+The tap transforms this object into the following record representation
+
+```json
+{
+  "apiVersion": "v1",
+  "kind": "meshCustomer",
+  "metadata": {
+      "name": "customer",
+      "createdOn": "2021-01-25T10:28:38Z"
+  },
+  "spec": {
+      "displayName": "admin-customer",
+      "tags": [{
+        "key": "environment", "values": ["dev", "prod"]
+      }]
+  }
+}
+
+The tap also removes the meshObject `_links` property as this is seldomly useful in ETL usecases and takes up a lot of 
+unnecessary data, requiring explicit configuration to remove from records.
 
 ## Usage
 
