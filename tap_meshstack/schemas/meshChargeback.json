@@ -80,6 +80,10 @@
                 "type": "string",
                 "description": "Date when the usage report was actually finalized and not modified anymore afterwards."
               },
+              "period": {
+                "type": "string",
+                "description": "Report Period in which the usage for this line item actually occurred. If for some reason a usage report was not finalized before the related chargeback period ended, it will be added to a later meshChargeback. So meshChargebacks can contain line items from differen treporting periods.                "
+              },
               "reportCategory": {
                 "type": "string",
                 "description": "Tenant Usage Reports can either belong to category BILLING or ENVIRONMENTAL. This separation is needed as this kind of different data is provided in quite different time intervals."
