@@ -20,7 +20,7 @@ class StubTap(Tap):
 def test_tag_transform():
     stream = MeshCustomersStream(StubTap())
 
-    with open(f"{stub_dir}/meshCustomers.json") as f:
+    with open(f"{stub_dir}/meshcustomers.json") as f:
         record = json.load(f)["_embedded"]["meshCustomers"][0]
         stream.transform_record(record)
     
