@@ -73,7 +73,8 @@
               },
               "netAmount": {
                 "type": "number",
-                "description": "Total cost associated with the given Tenant Usage Report for one currency."
+                "description": "Total cost associated with the given Tenant Usage Report for one currency.",
+                "multipleOf": 0.01
               },
               "entryDate": {
                 "type": "string",
@@ -106,7 +107,8 @@
             "properties": {
               "amount": {
                 "type": "number",
-                "description": "The actual cost associated with the given currency."
+                "description": "The actual cost associated with the given currency.",
+                "multipleOf": 0.01
               },
               "currency": {
                 "type": "string",
