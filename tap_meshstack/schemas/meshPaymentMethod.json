@@ -28,8 +28,9 @@
       "type": "object",
       "properties": {
         "amount": {
-          "type": "string",
-          "description": "The amount of the meshPaymentMethod."
+          "type": "number",
+          "description": "The amount of the meshPaymentMethod.",
+          "multipleOf": 0.01
         },
         "displayName": {
           "type": "string",
