@@ -92,7 +92,7 @@ class TapMeshStack(Tap):
         ),
         th.Property(
             "cert_path",
-            th.StringType
+            th.StringType,
             required=False,
             description="Path to self-signed SSL certificate",
         )
