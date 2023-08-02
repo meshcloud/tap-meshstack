@@ -16,7 +16,7 @@
               },
               "_links": {
                   "self": {
-                      "href": "http://localhost:8000/api/meshobjects/meshWorkspaces/admin-customer"
+                      "href": "http://localhost:8000/api/meshobjects/meshworkspaces/admin-customer"
                   },
                   "meshtenants": {
                       "href": "http://localhost:8000/api/meshobjects/meshtenants?workspaceIdentifier=admin-customer{&projectIdentifier,platformIdentifier}",
@@ -38,16 +38,16 @@
   },
   "_links": {
       "first": {
-          "href": "http://localhost:8000/api/meshobjects/meshWorkspaces?page=0&size=1"
+          "href": "http://localhost:8000/api/meshobjects/meshworkspaces?page=0&size=1"
       },
       "self": {
-          "href": "http://localhost:8000/api/meshobjects/meshWorkspaces?size=1"
+          "href": "http://localhost:8000/api/meshobjects/meshworkspaces?size=1"
       },
       "next": {
-          "href": "http://localhost:8000/api/meshobjects/meshWorkspaces?page=1&size=1"
+          "href": "http://localhost:8000/api/meshobjects/meshworkspaces?page=1&size=1"
       },
       "last": {
-          "href": "http://localhost:8000/api/meshobjects/meshWorkspaces?page=44&size=1"
+          "href": "http://localhost:8000/api/meshobjects/meshworkspaces?page=44&size=1"
       }
   },
   "page": {
