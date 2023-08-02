@@ -2,11 +2,11 @@
   "_embedded": {
     "meshProjects": [
       {
-        "apiVersion": "v1",
+        "apiVersion": "v2",
         "kind": "meshProject",
         "metadata": {
           "name": "test-metrics-metering-dev",
-          "ownedByCustomer": "managed-customer",
+          "ownedByWorkspace": "managed-customer",
           "createdOn": "2021-01-27T07:49:12Z"
         },
         "spec": {
@@ -22,11 +22,11 @@
             "href": "http://localhost:8000/api/meshobjects/meshprojects/managed-customer.test-metrics-metering-dev"
           },
           "meshtenants": {
-            "href": "http://localhost:8000/api/meshobjects/meshtenants?customerIdentifier=managed-customer&projectIdentifier=test-metrics-metering-dev{&platformIdentifier}",
+            "href": "http://localhost:8000/api/meshobjects/meshtenants?workspaceIdentifier=managed-customer&projectIdentifier=test-metrics-metering-dev{&platformIdentifier}",
             "templated": true
           },
           "meshusers": {
-            "href": "http://localhost:8000/api/meshobjects/meshusers?customerIdentifier=managed-customer&projectIdentifier=test-metrics-metering-dev{&platformIdentifier,customerRole,projectRole}",
+            "href": "http://localhost:8000/api/meshobjects/meshusers?workspaceIdentifier=managed-customer&projectIdentifier=test-metrics-metering-dev{&platformIdentifier,customerRole,projectRole}",
             "templated": true
           },
           "activePaymentMethod": {

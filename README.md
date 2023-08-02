@@ -53,13 +53,13 @@ schemas can more handle easily handle the dynamic schema nature of tags.
 
 > Note that meshObject tag schemas can also be different from object to object in the same collection.
 
-Consider the following example to understand how the transformation works. The `meshCustomer` has the following
+Consider the following example to understand how the transformation works. The `meshWorkspace` has the following
 JSON representation in the meshObject API:
 
 ```json
 {
   "apiVersion": "v1",
-  "kind": "meshCustomer",
+  "kind": "meshWorkspace",
   "metadata": {
       "name": "customer",
       "createdOn": "2021-01-25T10:28:38Z"
@@ -78,7 +78,7 @@ The tap transforms this object into the following record representation
 ```json
 {
   "apiVersion": "v1",
-  "kind": "meshCustomer",
+  "kind": "meshWorkspace",
   "metadata": {
       "name": "customer",
       "createdOn": "2021-01-25T10:28:38Z"

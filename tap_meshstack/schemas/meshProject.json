@@ -5,9 +5,9 @@
     "metadata": {
       "type": "object",
       "properties": {
-        "ownedByCustomer": {
+        "ownedByWorkspace": {
           "type": "string",
-          "description": "The customerIdentifier as 'ownedByCustomer'."
+          "description": "The workspaceIdentifier as 'ownedByWorkspace'."
         },
         "deletedOn": {
           "type": "string",
@@ -22,7 +22,7 @@
           "description": "The meshProject has been created at this <<data_types,date>> (e.g. `2020-12-22T09:37:43Z`)."
         }
       },
-      "description": "Always contains the 'name' and 'ownedByCustomer' to uniquely identify the meshProject."
+      "description": "Always contains the 'name' and 'ownedByWorkspace' to uniquely identify the meshProject."
     },
     "apiVersion": {
       "type": "string",

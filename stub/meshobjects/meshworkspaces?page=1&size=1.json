@@ -1,9 +1,9 @@
 {
     "_embedded": {
-        "meshCustomers": [
+        "meshWorkspaces": [
             {
                 "apiVersion": "v1",
-                "kind": "meshCustomer",
+                "kind": "meshWorkspace",
                 "metadata": {
                     "name": "demo-customer",
                     "createdOn": "2021-01-25T10:28:38Z"
@@ -21,21 +21,21 @@
                 },
                 "_links": {
                     "self": {
-                        "href": "http://localhost:8000/api/meshobjects/meshcustomers/demo-customer"
+                        "href": "http://localhost:8000/api/meshobjects/meshWorkspaces/demo-customer"
                     },
                     "meshtenants": {
-                        "href": "http://localhost:8000/api/meshobjects/meshtenants?customerIdentifier=demo-customer{&projectIdentifier,platformIdentifier}",
+                        "href": "http://localhost:8000/api/meshobjects/meshtenants?workspaceIdentifier=demo-customer{&projectIdentifier,platformIdentifier}",
                         "templated": true
                     },
                     "meshprojects": {
-                        "href": "http://localhost:8000/api/meshobjects/meshprojects?customerIdentifier=demo-customer"
+                        "href": "http://localhost:8000/api/meshobjects/meshprojects?workspaceIdentifier=demo-customer"
                     },
                     "meshusers": {
-                        "href": "http://localhost:8000/api/meshobjects/meshusers?customerIdentifier=demo-customer{&projectIdentifier,platformIdentifier,customerRole,projectRole}",
+                        "href": "http://localhost:8000/api/meshobjects/meshusers?workspaceIdentifier=demo-customer{&projectIdentifier,platformIdentifier,customerRole,projectRole}",
                         "templated": true
                     },
                     "meshpaymentmethods": {
-                        "href": "http://localhost:8000/api/meshobjects/meshpaymentmethods?customerIdentifier=demo-customer"
+                        "href": "http://localhost:8000/api/meshobjects/meshpaymentmethods?workspaceIdentifier=demo-customer"
                     }
                 }
             }
@@ -43,13 +43,13 @@
     },
     "_links": {
         "first": {
-            "href": "http://localhost:8000/api/meshobjects/meshcustomers?page=0&size=1"
+            "href": "http://localhost:8000/api/meshobjects/meshWorkspaces?page=0&size=1"
         },
         "prev": {
-            "href": "http://localhost:8000/api/meshobjects/meshcustomers?page=0&size=1"
+            "href": "http://localhost:8000/api/meshobjects/meshWorkspaces?page=0&size=1"
         },
         "self": {
-            "href": "http://localhost:8000/api/meshobjects/meshcustomers?page=1&size=1"
+            "href": "http://localhost:8000/api/meshobjects/meshWorkspaces?page=1&size=1"
         }
     },
     "page": {

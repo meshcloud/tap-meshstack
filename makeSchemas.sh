@@ -16,7 +16,7 @@ main() {
   if [[ -z $krakenApiSpecFile ]]; then usage "openapi.yaml file argument for kraken missing"; fi;
 
   # meshfed-api
-  extractSchema "$apiSpecFile" "meshCustomer"
+  extractSchema "$apiSpecFile" "meshWorkspace"
   extractSchema "$apiSpecFile" "meshProject"
   extractSchema "$apiSpecFile" "meshPaymentMethod"
   extractSchema "$apiSpecFile" "meshTenant"

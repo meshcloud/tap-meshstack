@@ -89,6 +89,10 @@ class MeshObjectStream(RESTStream):
         request_data = self.prepare_request_payload(context, next_page_token)
         headers = self.http_headers
 
+        headers.update({
+            "accept": self.meshobject_version
+        })
+
         authenticator = self.authenticator
         if authenticator:
             headers.update(authenticator.auth_headers or {})

@@ -12,7 +12,7 @@ plugins:
     - discover
     # TODO: please configure your meshObjects you want to add to the data ware house
     select:
-      - meshCustomers.*
+      - meshWorkspaces.*
       - meshProjects.*
       - meshPaymentMethods.*
       - meshTenants.*
