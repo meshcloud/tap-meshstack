@@ -89,6 +89,12 @@ class TapMeshStack(Tap):
             ),
             required=True,
             description="Configuration for Kraken",
+        ),
+        th.Property(
+            "cert_path",
+            th.StringType,
+            required=False,
+            description="Path to self-signed SSL certificate",
         )
     ).to_dict()
 
