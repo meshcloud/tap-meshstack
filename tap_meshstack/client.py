@@ -95,7 +95,9 @@ class MeshObjectStream(RESTStream):
             params.update(authenticator.auth_params or {})
 
         # set session certificate
-        self.requests_session.verify=self.config.get("cert_path")
+        custom_certificate=self.config.get("cert_path")
+        if custom_certificate is not None:
+            self.requests_session.verify=custom_certificate
         
         request = cast(
             requests.PreparedRequest,
