@@ -21,6 +21,7 @@ plugins:
 ## Configuration
 
 ### Accepted Config Options
+
 - `federation`: meshStack federation config
   - `api_url`: meshStack federation API URL
   - `auth`: authentication options, see [Authorization](#source-authentication-and-authorization)
@@ -32,6 +33,7 @@ plugins:
     - `username`: basic auth username
     - `password`: basic auth password (plaintext)
 - `tag_schemas`: see [meshObject Tag Schemas](#meshobject-tag-schemas)
+- `cert_path`: path to a public SSL certificate used to verify connection to meshStack. Useful if you are running meshStack Enterprise with certificates signed by a non-public Certificate Authority
 
 A full list of supported settings and capabilities for this tap is available by running:
 
@@ -89,6 +91,7 @@ The tap transforms this object into the following record representation
       }]
   }
 }
+```
 
 The tap also removes the meshObject `_links` property as this is seldomly useful in ETL usecases and takes up a lot of 
 unnecessary data, requiring explicit configuration to remove from records.
