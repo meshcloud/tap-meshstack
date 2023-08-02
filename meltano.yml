@@ -33,48 +33,6 @@ plugins:
           username: $TAP_MESHSTACK_KRAKEN_USERNAME
           password: $TAP_MESHSTACK_KRAKEN_PASSWORD
         api_url: $TAP_MESHSTACK_KRAKEN_URL
-      tag_schemas:
-      # TODO: add meshChargebackStatement tag schema if applicable. If no tag schema configured in meshStack delete the meshChargebackStatement tag configuration
-        meshCustomer:
-          properties:
-            environment:
-              type: array
-            Test:
-              type: array
-          type: object
-        meshPaymentMethod:
-          properties:
-            Country:
-              type: array
-            costCenterNumber:
-              type: array
-            department:
-              type: array
-            paymentMethodType:
-              type: array
-          type: object
-        meshProject:
-          properties:
-            SecurityOwner:
-              type: array
-            confidentiality:
-              type: array
-            environment:
-              type: array
-          type: object
-        meshTenant:
-          properties:
-            environment:
-              type: array
-            department:
-              type: array
-            confidentiality:
-              type: array
-            SecurityContact:
-              type: array
-          type: object
-        meshUser:
-          type: object
       start_date: '2010-01-01T00:00:00Z'
   loaders:
   - name: target-jsonl

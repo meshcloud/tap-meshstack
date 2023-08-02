@@ -32,7 +32,6 @@ plugins:
   - `auth`: authentication options, see [Authorization](#source-authentication-and-authorization)
     - `username`: basic auth username
     - `password`: basic auth password (plaintext)
-- `tag_schemas`: see [meshObject Tag Schemas](#meshobject-tag-schemas)
 - `cert_path`: path to a public SSL certificate used to verify connection to meshStack. Useful if you are running meshStack Enterprise with certificates signed by a non-public Certificate Authority
 
 A full list of supported settings and capabilities for this tap is available by running:

@@ -25,8 +25,7 @@ SAMPLE_CONFIG = {
             "password": "password"
         },
         "api_url": "http://localhost:8000"
-    },
-    "tag_schemas": {}
+    }
 }
 
 
