@@ -2,14 +2,14 @@
   "_embedded": {
       "meshChargebacks": [
           {
-              "apiVersion": "v1",
+              "apiVersion": "v2",
               "kind": "meshChargeback",
               "metadata": {
                   "name": "2022-06-06Z/demo-partner:unipipe-video:unipipe-service-broker-dev",
                   "createdOn": "2022-06-28T08:39:46.950195Z"
               },
               "spec": {
-                  "customerIdentifier": "unipipe-video",
+                  "workspaceIdentifier": "unipipe-video",
                   "projectIdentifier": "unipipe-service-broker-dev",
                   "partnerIdentifier": "demo-partner",
                   "period": "2022-06-06Z",

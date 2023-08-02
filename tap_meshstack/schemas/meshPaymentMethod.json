@@ -5,16 +5,16 @@
     "metadata": {
       "type": "object",
       "properties": {
-        "ownedByCustomer": {
+        "ownedByWorkspace": {
           "type": "string",
-          "description": "The customerIdentifier as 'ownedByCustomer'."
+          "description": "The workspaceIdentifier as 'ownedByWorkspace'."
         },
         "name": {
           "type": "string",
           "description": "The paymentMethodIdentifier as 'name'."
         }
       },
-      "description": "Always contains the 'name' and (optional) 'ownedByCustomer' to uniquely identify the meshPaymentMethod."
+      "description": "Always contains the 'name' and (optional) 'ownedByWorkspace' to uniquely identify the meshPaymentMethod."
     },
     "apiVersion": {
       "type": "string",

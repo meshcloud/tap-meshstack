@@ -9,20 +9,20 @@
           "type": "string",
           "description": "The identifier of the meshProject the meshTenant belongs to."
         },
-        "ownedByCustomer": {
+        "ownedByWorkspace": {
           "type": "string",
-          "description": "The identifier of the meshCustomer the meshTenant belongs to."
+          "description": "The identifier of the meshWorkspace the meshTenant belongs to."
         },
         "assignedTags": {
           "type": "object",
-          "description": "The tags assigned to this meshTenant originating from meshCustomer, Payment Method and meshProject. Keep in mind, that values are an array. Also see our general section about <<tags>>"
+          "description": "The tags assigned to this meshTenant originating from meshWorkspace, Payment Method and meshProject. Keep in mind, that values are an array. Also see our general section about <<tags>>"
         },
         "platformIdentifier": {
           "type": "string",
           "description": "The identifier of the related platform instance"
         }
       },
-      "description": "Always contains the 'ownedByProject', 'ownedByCustomer' and 'platformIdentifier' to identify the meshTenant."
+      "description": "Always contains the 'ownedByProject', 'ownedByWorkspace' and 'platformIdentifier' to identify the meshTenant."
     },
     "apiVersion": {
       "type": "string",

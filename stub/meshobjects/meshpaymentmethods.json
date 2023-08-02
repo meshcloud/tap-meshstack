@@ -2,11 +2,11 @@
     "_embedded": {
         "meshPaymentMethods": [
             {
-                "apiVersion": "v1",
+                "apiVersion": "v2",
                 "kind": "meshPaymentMethod",
                 "metadata": {
                     "name": "default",
-                    "ownedByCustomer": "managed-customer"
+                    "ownedByWorkspace": "managed-customer"
                 },
                 "spec": {
                     "displayName": "Default",

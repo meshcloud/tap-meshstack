@@ -1,0 +1,59 @@
+{
+  "_embedded": {
+      "meshWorkspaces": [
+          {
+              "apiVersion": "v1",
+              "kind": "meshWorkspace",
+              "metadata": {
+                  "name": "admin-customer",
+                  "createdOn": "2021-01-25T10:28:38Z"
+              },
+              "spec": {
+                  "displayName": "admin-customer",
+                  "tags": {
+                      "environment": ["dev", "prod"]
+                  }
+              },
+              "_links": {
+                  "self": {
+                      "href": "http://localhost:8000/api/meshobjects/meshworkspaces/admin-customer"
+                  },
+                  "meshtenants": {
+                      "href": "http://localhost:8000/api/meshobjects/meshtenants?workspaceIdentifier=admin-customer{&projectIdentifier,platformIdentifier}",
+                      "templated": true
+                  },
+                  "meshprojects": {
+                      "href": "http://localhost:8000/api/meshobjects/meshprojects?workspaceIdentifier=admin-customer"
+                  },
+                  "meshusers": {
+                      "href": "http://localhost:8000/api/meshobjects/meshusers?workspaceIdentifier=admin-customer{&projectIdentifier,platformIdentifier,customerRole,projectRole}",
+                      "templated": true
+                  },
+                  "meshpaymentmethods": {
+                      "href": "http://localhost:8000/api/meshobjects/meshpaymentmethods?workspaceIdentifier=admin-customer"
+                  }
+              }
+          }
+      ]
+  },
+  "_links": {
+      "first": {
+          "href": "http://localhost:8000/api/meshobjects/meshworkspaces?page=0&size=1"
+      },
+      "self": {
+          "href": "http://localhost:8000/api/meshobjects/meshworkspaces?size=1"
+      },
+      "next": {
+          "href": "http://localhost:8000/api/meshobjects/meshworkspaces?page=1&size=1"
+      },
+      "last": {
+          "href": "http://localhost:8000/api/meshobjects/meshworkspaces?page=44&size=1"
+      }
+  },
+  "page": {
+      "size": 1,
+      "totalElements": 45,
+      "totalPages": 45,
+      "number": 0
+  }
+}

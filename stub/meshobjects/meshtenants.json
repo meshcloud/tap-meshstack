@@ -2,11 +2,11 @@
   "_embedded": {
     "meshTenants": [
       {
-        "apiVersion": "v2",
+        "apiVersion": "v3",
         "kind": "meshTenant",
         "metadata": {
           "ownedByProject": "tenant-import-aws-dev",
-          "ownedByCustomer": "managed-customer",
+          "ownedByWorkspace": "managed-customer",
           "platformIdentifier": "aws.aws-meshstack-dev",
           "assignedTags": {
             "environment": ["dev"],
@@ -26,7 +26,7 @@
             "href": "http://localhost:8000/api/meshobjects/meshtenants/managed-customer.tenant-import-aws-dev.aws.aws-meshstack-dev"
           },
           "meshusers": {
-            "href": "http://localhost:8000/api/meshobjects/meshusers?customerIdentifier=managed-customer&projectIdentifier=tenant-import-aws-dev&platformIdentifier=aws.aws-meshstack-dev{&customerRole,projectRole}",
+            "href": "http://localhost:8000/api/meshobjects/meshusers?workspaceIdentifier=managed-customer&projectIdentifier=tenant-import-aws-dev&platformIdentifier=aws.aws-meshstack-dev{&customerRole,projectRole}",
             "templated": true
           }
         }

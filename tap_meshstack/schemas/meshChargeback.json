@@ -29,15 +29,15 @@
       "properties": {
         "partnerIdentifier": {
           "type": "string",
-          "description": "The meshPartner the meshCustomer of this meshChargeback belongs to."
+          "description": "The meshPartner the meshWorkspace of this meshChargeback belongs to."
         },
         "period": {
           "type": "string",
           "description": "The period of the meshChargeback, e.g. '2022-01-06Z'."
         },
-        "customerIdentifier": {
+        "workspaceIdentifier": {
           "type": "string",
-          "description": "The meshCustomer identifier this meshChargeback belongs to."
+          "description": "The meshWorkspace identifier this meshChargeback belongs to."
         },
         "projectIdentifier": {
           "type": "string",
