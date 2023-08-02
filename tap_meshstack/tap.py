@@ -94,7 +94,7 @@ class TapMeshStack(Tap):
             "cert_path",
             th.StringType,
             required=False,
-            description="Path to self-signed SSL certificate",
+            description="path to a public SSL certificate used to verify connection to meshStack",
         )
     ).to_dict()
 
