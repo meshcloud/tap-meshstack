@@ -23,6 +23,7 @@ main() {
 
   # kraken-api
   extractSchema "$krakenApiSpecFile" "meshChargeback"
+  extractSchema "$krakenApiSpecFile" "meshTenantUsageReport"
 }
 
 extractSchema() {
@@ -32,7 +33,7 @@ extractSchema() {
     local schemaFile="tap_meshstack/schemas/$meshObject.json"
 
     echo "extracting $meshObject schema to $schemaFile"
-    (yq -o "json" ".components.schemas.$meshObject | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
+    (jq ".components.schemas.$meshObject | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
 }
 
 usage() {

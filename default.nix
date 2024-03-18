@@ -8,6 +8,7 @@ in
 pkgs.mkShell {
   NIX_SHELL = "tap-meshstack";
   buildInputs = [
+    pkgs.jq
     pkgs.poetry
     python-with-my-packages
   ];
