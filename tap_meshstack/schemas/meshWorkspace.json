@@ -36,15 +36,8 @@
           "description": "The display name of the meshWorkspace as it is shown in meshPanel."
         },
         "tags": {
-          "type": "array",
-          "description": "Key/Value pairs of tags set on the meshWorkspace. Keep in mind, that values are an array. Also see our general section about <<tags>>",
-          "items": {
-            "type": "object",
-            "properties": {
-              "key": { "type": "string" },
-              "values": { "type": "array", "items": { "type": "string" } }
-            }
-          }
+          "type": "object",
+          "description": "Key/Value pairs of tags set on the meshWorkspace. Keep in mind, that values are an array. Also see our general section about <<tags>>"
         }
       },
       "description": "All fields in this section describe the meshWorkspace."

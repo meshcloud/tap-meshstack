@@ -1,0 +1,113 @@
+{
+  "title": "meshTenantUsageReport",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "finalized": {
+          "type": "boolean",
+          "description": "Indicator whether the meshTenantUsageReport was finalized already or not."
+        },
+        "name": {
+          "type": "string",
+          "description": "A name a meshTenantUsageReport can be uniquely identified with."
+        },
+        "lastModified": {
+          "type": "string",
+          "description": "Date of last update to the meshTenantUsageReport."
+        }
+      },
+      "description": "Contains attributes to identify a meshTenantUsageReport."
+    },
+    "apiVersion": {
+      "type": "string",
+      "description": "Version of meshTenantUsageReport datatype. Matches the version provided in the `Accept` request header."
+    },
+    "kind": {
+      "type": "string",
+      "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshTenantUsageReport' for this endpoint."
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "period": {
+          "type": "string",
+          "description": "The period of the meshTenantUsageReport, e.g. '2022-01-06Z'."
+        },
+        "platformTenantId": {
+          "type": "string",
+          "description": "The platformTenantId that the meshTenantUsageReport belongs to."
+        },
+        "platformType": {
+          "type": "string",
+          "description": "The platformType of the platform the meshTenantUsageReport belongs to."
+        },
+        "reportCategory": {
+          "type": "string",
+          "description": "The reportCategory of the meshTenantUsageReport, possible options are 'BILLING' or 'ENVIRONMENTAL'."
+        },
+        "platformFullIdentifier": {
+          "type": "string",
+          "description": "The platformFullIdentifier of the platform the meshTenantUsageReport belongs to."
+        }
+      },
+      "description": "All fields in this section describe the meshTenantUsageReport."
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "netAmounts": {
+          "type": "array",
+          "description": "A list of total reported amounts separated by currency.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "number",
+                "description": "The concrete amount of reported costs in the corresponding currency.",
+                "multipleOf": 1E-20
+              },
+              "currency": {
+                "type": "string",
+                "description": "The currency used for the corresponding amount."
+              },
+              "baseAmount": {
+                "type": "number",
+                "description": "The converted amount. For example, if currency is USD and baseCurrency is EUR, this will be the amount resulting from conversion from USD to EUR.",
+                "multipleOf": 1E-20
+              },
+              "baseCurrency": {
+                "type": "string",
+                "description": "Currency for the baseAmount. This value is either null or EUR."
+              }
+            }
+          }
+        },
+        "timeframe": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string",
+              "description": "At which point in time the period started (usually beginning of month)."
+            },
+            "to": {
+              "type": "string",
+              "description": "Before which point in time the period ended (usually beginning of next month)."
+            }
+          },
+          "description": "This provides actual details about the period the meshTenantUsageReport was generated for."
+        },
+        "workspaceIdentifier": {
+          "type": "string",
+          "description": "The identifier of the meshWorkspace the meshTenantUsageReport belongs to. (optional)"
+        },
+        "projectIdentifier": {
+          "type": "string",
+          "description": "The identifier of the meshProject the meshTenantUsageReport belongs to. (optional)"
+        }
+      },
+      "description": "All fields in this section provide detailed content of the meshTenantUsageReport."
+    }
+  }
+}

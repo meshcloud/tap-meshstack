@@ -16,24 +16,49 @@ main() {
   if [[ -z $krakenApiSpecFile ]]; then usage "openapi.yaml file argument for kraken missing"; fi;
 
   # meshfed-api
-  extractSchema "$apiSpecFile" "meshWorkspace"
-  extractSchema "$apiSpecFile" "meshProject"
-  extractSchema "$apiSpecFile" "meshPaymentMethod"
-  extractSchema "$apiSpecFile" "meshTenant"
+  extractSchema "$apiSpecFile" "meshWorkspace" "meshWorkspace"
+  extractSchema "$apiSpecFile" "meshProjectV2" "meshProject"
+  extractSchema "$apiSpecFile" "meshPaymentMethodV2" "meshPaymentMethod"
+  extractSchema "$apiSpecFile" "meshTenantV3" "meshTenant"
 
   # kraken-api
-  extractSchema "$krakenApiSpecFile" "meshChargeback"
-  extractSchema "$krakenApiSpecFile" "meshTenantUsageReport"
+  extractSchema "$krakenApiSpecFile" "meshChargeback" "meshChargeback"
+  patchAmounts "meshChargeback"
+  extractSchema "$krakenApiSpecFile" "meshTenantUsageReport" "meshTenantUsageReport"
+  patchAmounts "meshTenantUsageReport"
 }
 
 extractSchema() {
     local apiSpecFile="$1"
-    local meshObject="$2"
+    local component="$2"
+    local meshObject="$3"
 
     local schemaFile="tap_meshstack/schemas/$meshObject.json"
 
     echo "extracting $meshObject schema to $schemaFile"
-    (jq ".components.schemas.$meshObject | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
+    (jq ".components.schemas.$component | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
+}
+
+# ideally those would be published already correctly from meshcloud, but blocked on https://github.com/ePages-de/restdocs-api-spec/issues/264
+patchAmounts() {
+  local meshObject="$1"
+  local schemaFile="tap_meshstack/schemas/$meshObject.json"
+
+  # 20 digits of precision, considering we also have individual line items of primitve billing units coming from cloud provider bills...
+  patched_json=$(jq '
+walk(if type == "object" then
+    with_entries(if .key | test("amount$"; "i") then
+        .value |= (. + {"multipleOf": 0.00000000000000000001})
+    else
+        .
+    end)
+else
+    .
+end)
+' "$schemaFile")
+
+  echo "$patched_json" > "$schemaFile"
+
 }
 
 usage() {
@@ -45,3 +70,4 @@ usage() {
 }
 
 main "$@"
+

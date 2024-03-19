@@ -73,7 +73,8 @@
               },
               "baseNetAmount": {
                 "type": "number",
-                "description": "The converted amount. For example, if currency is USD and baseCurrency is EUR, this will be the amount resulting from conversion from USD to EUR."
+                "description": "The converted amount. For example, if currency is USD and baseCurrency is EUR, this will be the amount resulting from conversion from USD to EUR.",
+                "multipleOf": 1E-20
               },
               "reportId": {
                 "type": "string",
@@ -82,7 +83,7 @@
               "netAmount": {
                 "type": "number",
                 "description": "Total cost associated with the given Tenant Usage Report for one currency.",
-                "multipleOf": 0.01
+                "multipleOf": 1E-20
               },
               "entryDate": {
                 "type": "string",
@@ -120,11 +121,12 @@
               "amount": {
                 "type": "number",
                 "description": "The actual cost associated with the given currency.",
-                "multipleOf": 0.01
+                "multipleOf": 1E-20
               },
               "baseNetAmount": {
                 "type": "number",
-                "description": "The converted amount. For example, if currency is USD and baseCurrency is EUR, this will be the amount resulting from conversion from USD to EUR."
+                "description": "The converted amount. For example, if currency is USD and baseCurrency is EUR, this will be the amount resulting from conversion from USD to EUR.",
+                "multipleOf": 1E-20
               },
               "currency": {
                 "type": "string",

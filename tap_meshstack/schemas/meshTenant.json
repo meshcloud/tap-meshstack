@@ -1,5 +1,5 @@
 {
-  "title": "meshTenant",
+  "title": "meshTenantV3",
   "type": "object",
   "properties": {
     "metadata": {
@@ -9,17 +9,21 @@
           "type": "string",
           "description": "The identifier of the meshProject the meshTenant belongs to."
         },
-        "ownedByWorkspace": {
-          "type": "string",
-          "description": "The identifier of the meshWorkspace the meshTenant belongs to."
-        },
         "assignedTags": {
           "type": "object",
           "description": "The tags assigned to this meshTenant originating from meshWorkspace, Payment Method and meshProject. Keep in mind, that values are an array. Also see our general section about <<tags>>"
         },
+        "deletedOn": {
+          "type": "string",
+          "description": "If the meshTenant has been submitted for deletion by a Workspace Manager, the <<data_types,date>>, the date is represented here (e.g. `2020-12-22T09:37:43Z)`. Otherwise this field is missing."
+        },
         "platformIdentifier": {
           "type": "string",
           "description": "The identifier of the related platform instance"
+        },
+        "ownedByWorkspace": {
+          "type": "string",
+          "description": "The identifier of the meshWorkspace the meshTenant belongs to."
         }
       },
       "description": "Always contains the 'ownedByProject', 'ownedByWorkspace' and 'platformIdentifier' to identify the meshTenant."
@@ -37,7 +41,23 @@
       "properties": {
         "quotas": {
           "type": "array",
-          "description": "The set of applied Tenant Quotas. They can be set individually per tenant. By default the Landing Zone quotas are applied to new meshTenants."
+          "description": "The set of applied Tenant Quotas. They can be set individually per tenant. By default the Landing Zone quotas are applied to new meshTenants.",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          }
         },
         "landingZoneIdentifier": {
           "type": "string",
