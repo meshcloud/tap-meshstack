@@ -66,7 +66,7 @@
               "amount": {
                 "type": "number",
                 "description": "The concrete amount of reported costs in the corresponding currency.",
-                "multipleOf": 0.00001
+                "multipleOf": 1E-20
               },
               "currency": {
                 "type": "string",
@@ -75,7 +75,7 @@
               "baseAmount": {
                 "type": "number",
                 "description": "The converted amount. For example, if currency is USD and baseCurrency is EUR, this will be the amount resulting from conversion from USD to EUR.",
-                "multipleOf": 0.00001
+                "multipleOf": 1E-20
               },
               "baseCurrency": {
                 "type": "string",

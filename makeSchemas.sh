@@ -44,11 +44,11 @@ patchAmounts() {
   local meshObject="$1"
   local schemaFile="tap_meshstack/schemas/$meshObject.json"
 
-  # 5 digits should be more than enough for dealing with converted currencies and dealing with rounding up to 2 digits
+  # 20 digits of precision, considering we also have individual line items of primitve billing units coming from cloud provider bills...
   patched_json=$(jq '
 walk(if type == "object" then
     with_entries(if .key | test("amount$"; "i") then
-        .value |= (. + {"multipleOf": 0.00001})
+        .value |= (. + {"multipleOf": 0.00000000000000000001})
     else
         .
     end)
