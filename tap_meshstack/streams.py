@@ -12,6 +12,11 @@ class MeshChargebackStatementsStream(KrakenMeshObjectStream):
     name_singular = "meshChargeback"
     meshobject_version = "application/vnd.meshcloud.api.meshchargeback.v2.hal+json"
 
+class MeshTenantUsageReportsStream(KrakenMeshObjectStream):
+    name = "meshTenantUsageReports"
+    name_singular = "meshTenantUsageReport"
+    meshobject_version = "application/vnd.meshcloud.api.meshtenantusagereport.v2.hal+json"
+
 class MeshPaymentMethodsStream(FederationMeshObjectStream):
     name = "meshPaymentMethods"
     name_singular = "meshPaymentMethod"

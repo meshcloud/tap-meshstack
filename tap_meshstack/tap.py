@@ -7,6 +7,7 @@ from singer_sdk import typing as th  # JSON schema typing helpers
 
 from tap_meshstack.streams import (
     MeshChargebackStatementsStream,
+    MeshTenantUsageReportsStream
     meshWorkspacesStream,
     MeshPaymentMethodsStream,
     MeshProjectsStream,
@@ -15,6 +16,7 @@ from tap_meshstack.streams import (
 
 STREAM_TYPES = [
     MeshChargebackStatementsStream,
+    MeshTenantUsageReportsStream
     MeshPaymentMethodsStream,
     meshWorkspacesStream,
     MeshProjectsStream,
