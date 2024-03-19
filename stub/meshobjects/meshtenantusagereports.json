@@ -1,0 +1,50 @@
+{
+    "_embedded" : {
+      "meshTenantUsageReports" : [ {
+        "apiVersion" : "v2",
+        "kind" : "meshTenantUsageReport",
+        "metadata" : {
+          "name" : "gcp1.gcp-ffm:project:2018-01-01Z",
+          "lastModified" : "2024-03-18T17:57:39.520087Z",
+          "finalized" : true
+        },
+        "spec" : {
+          "period" : "2018-01-01Z",
+          "reportCategory" : "BILLING",
+          "platformType" : "Gcp",
+          "platformFullIdentifier" : "gcp1.gcp-ffm",
+          "platformTenantId" : "project"
+        },
+        "status" : {
+          "projectIdentifier" : "testProject",
+          "timeframe" : {
+            "from" : "2024-03-01T00:00:00Z",
+            "to" : "2024-04-01T00:00:00Z"
+          },
+          "netAmounts" : [ {
+            "currency" : "EUR",
+            "amount" : 128,
+            "baseCurrency" : "EUR",
+            "baseAmount" : 0
+          } ],
+          "workspaceIdentifier" : "testWorkspace"
+        },
+        "_links" : {
+          "self" : {
+            "href" : "http://localhost:8000/api/meshobjects/meshtenantusagereports/gcp1.gcp-ffm%3Aproject/2018-01-01Z"
+          }
+        }
+      } ]
+    },
+    "_links" : {
+      "self" : {
+        "href" : "https://mesh-billing-url/api/meshobjects/meshtenantusagereports?workspaceIdentifier=testWorkspace&page=0&size=10&sort=period,desc"
+      }
+    },
+    "page" : {
+      "size" : 10,
+      "totalElements" : 1,
+      "totalPages" : 1,
+      "number" : 0
+    }
+  }

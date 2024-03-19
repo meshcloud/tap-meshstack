@@ -17,6 +17,10 @@ class MeshTenantUsageReportsStream(KrakenMeshObjectStream):
     name_singular = "meshTenantUsageReport"
     meshobject_version = "application/vnd.meshcloud.api.meshtenantusagereport.v2.hal+json"
 
+    # TenantUsageReports don't have a spec.tags field
+    def transform_record(self, record: dict):
+        return
+
 class MeshPaymentMethodsStream(FederationMeshObjectStream):
     name = "meshPaymentMethods"
     name_singular = "meshPaymentMethod"
