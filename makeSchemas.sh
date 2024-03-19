@@ -23,7 +23,9 @@ main() {
 
   # kraken-api
   extractSchema "$krakenApiSpecFile" "meshChargeback" "meshChargeback"
+  patchAmounts "meshChargeback"
   extractSchema "$krakenApiSpecFile" "meshTenantUsageReport" "meshTenantUsageReport"
+  patchAmounts "meshTenantUsageReport"
 }
 
 extractSchema() {
@@ -37,6 +39,28 @@ extractSchema() {
     (jq ".components.schemas.$component | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
 }
 
+# ideally those would be published already correctly from meshcloud, but blocked on https://github.com/ePages-de/restdocs-api-spec/issues/264
+patchAmounts() {
+  local meshObject="$1"
+  local schemaFile="tap_meshstack/schemas/$meshObject.json"
+
+  # 5 digits should be more than enough for dealing with converted currencies and dealing with rounding up to 2 digits
+  patched_json=$(jq '
+walk(if type == "object" then
+    with_entries(if .key | test("amount$"; "i") then
+        .value |= (. + {"multipleOf": 0.00001})
+    else
+        .
+    end)
+else
+    .
+end)
+' "$schemaFile")
+
+  echo "$patched_json" > "$schemaFile"
+
+}
+
 usage() {
   echo -e "${RED}👉 $1${CLEAR}\n";
   echo "Usage: $0 <openapiForMeshfed.yaml>  <openapiForKraken.yaml>"
@@ -46,3 +70,4 @@ usage() {
 }
 
 main "$@"
+
