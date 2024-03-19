@@ -22,7 +22,7 @@ class MeshPaymentMethodsStream(FederationMeshObjectStream):
     name_singular = "meshPaymentMethod"
     meshobject_version = "application/vnd.meshcloud.api.meshpaymentmethod.v2.hal+json"
 
-class meshWorkspacesStream(FederationMeshObjectStream):
+class MeshWorkspacesStream(FederationMeshObjectStream):
     name = "meshWorkspaces"
     name_singular = "meshWorkspace"
     meshobject_version = "application/vnd.meshcloud.api.meshworkspace.v1.hal+json"

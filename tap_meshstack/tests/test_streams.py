@@ -4,7 +4,7 @@ import json
 from singer_sdk import Tap, Stream
 from typing import List
 
-from tap_meshstack.streams import meshWorkspacesStream
+from tap_meshstack.streams import MeshWorkspacesStream
 from tap_meshstack.tap import TapMeshStack
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
@@ -18,7 +18,7 @@ class StubTap(Tap):
         return []
 
 def test_tag_transform():
-    stream = meshWorkspacesStream(StubTap())
+    stream = MeshWorkspacesStream(StubTap())
 
     with open(f"{stub_dir}/meshworkspaces.json") as f:
         record = json.load(f)["_embedded"]["meshWorkspaces"][0]
