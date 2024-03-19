@@ -16,24 +16,25 @@ main() {
   if [[ -z $krakenApiSpecFile ]]; then usage "openapi.yaml file argument for kraken missing"; fi;
 
   # meshfed-api
-  extractSchema "$apiSpecFile" "meshWorkspace"
-  extractSchema "$apiSpecFile" "meshProject"
-  extractSchema "$apiSpecFile" "meshPaymentMethod"
-  extractSchema "$apiSpecFile" "meshTenant"
+  extractSchema "$apiSpecFile" "meshWorkspace" "meshWorkspace"
+  extractSchema "$apiSpecFile" "meshProjectV2" "meshProject"
+  extractSchema "$apiSpecFile" "meshPaymentMethodV2" "meshPaymentMethod"
+  extractSchema "$apiSpecFile" "meshTenantV3" "meshTenant"
 
   # kraken-api
-  extractSchema "$krakenApiSpecFile" "meshChargeback"
-  extractSchema "$krakenApiSpecFile" "meshTenantUsageReport"
+  extractSchema "$krakenApiSpecFile" "meshChargeback" "meshChargeback"
+  extractSchema "$krakenApiSpecFile" "meshTenantUsageReport" "meshTenantUsageReport"
 }
 
 extractSchema() {
     local apiSpecFile="$1"
-    local meshObject="$2"
+    local component="$2"
+    local meshObject="$3"
 
     local schemaFile="tap_meshstack/schemas/$meshObject.json"
 
     echo "extracting $meshObject schema to $schemaFile"
-    (jq ".components.schemas.$meshObject | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
+    (jq ".components.schemas.$component | del(.properties._links)" < "$apiSpecFile") > "$schemaFile"
 }
 
 usage() {

@@ -1,17 +1,13 @@
 {
-  "title": "meshProject",
+  "title": "meshProjectV2",
   "type": "object",
   "properties": {
     "metadata": {
       "type": "object",
       "properties": {
-        "ownedByWorkspace": {
-          "type": "string",
-          "description": "The workspaceIdentifier as 'ownedByWorkspace'."
-        },
         "deletedOn": {
           "type": "string",
-          "description": "If the meshProject has already been deleted, the <<data_types,date>> when deletion happened is provided via this field. e.g. `2020-12-22T09:37:43Z`"
+          "description": "If the meshProject has been submitted for deletion by a Workspace Manager, the <<data_types,date>>, the date is represented here (e.g. `2020-12-22T09:37:43Z)`. Otherwise this field is missing."
         },
         "name": {
           "type": "string",
@@ -20,6 +16,10 @@
         "createdOn": {
           "type": "string",
           "description": "The meshProject has been created at this <<data_types,date>> (e.g. `2020-12-22T09:37:43Z`)."
+        },
+        "ownedByWorkspace": {
+          "type": "string",
+          "description": "The workspaceIdentifier as 'ownedByWorkspace'."
         }
       },
       "description": "Always contains the 'name' and 'ownedByWorkspace' to uniquely identify the meshProject."

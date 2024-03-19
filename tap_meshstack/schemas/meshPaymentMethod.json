@@ -1,17 +1,17 @@
 {
-  "title": "meshPaymentMethod",
+  "title": "meshPaymentMethodV2",
   "type": "object",
   "properties": {
     "metadata": {
       "type": "object",
       "properties": {
-        "ownedByWorkspace": {
-          "type": "string",
-          "description": "The workspaceIdentifier as 'ownedByWorkspace'."
-        },
         "name": {
           "type": "string",
           "description": "The paymentMethodIdentifier as 'name'."
+        },
+        "ownedByWorkspace": {
+          "type": "string",
+          "description": "The workspaceIdentifier as 'ownedByWorkspace'."
         }
       },
       "description": "Always contains the 'name' and (optional) 'ownedByWorkspace' to uniquely identify the meshPaymentMethod."
@@ -28,9 +28,8 @@
       "type": "object",
       "properties": {
         "amount": {
-          "type": "number",
-          "description": "The amount of the meshPaymentMethod.",
-          "multipleOf": 0.01
+          "type": "string",
+          "description": "The amount of the meshPaymentMethod."
         },
         "displayName": {
           "type": "string",
