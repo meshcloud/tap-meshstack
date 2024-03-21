@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tap-meshstack"
-version = "0.1.0"
+version = "0.2.0"
 description = "`tap-meshstack` is a Singer tap for meshStack, built with the Meltano SDK for Singer Taps."
 authors = ["meshcloud GmbH"]
 keywords = [
