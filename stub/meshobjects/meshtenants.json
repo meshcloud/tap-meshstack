@@ -18,7 +18,7 @@
         },
         "spec": {
           "localId": "602620322307",
-          "landingZoneIdentifier": "aws-without-stackset",
+          "landingZoneIdentifier": "aws-landing-zone",
           "quotas": []
         },
         "_links": {
