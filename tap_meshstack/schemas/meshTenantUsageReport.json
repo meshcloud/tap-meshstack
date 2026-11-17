@@ -1,110 +1,262 @@
 {
-  "title": "meshTenantUsageReport",
+  "required": [
+    "kind",
+    "apiVersion",
+    "metadata",
+    "spec",
+    "status"
+  ],
   "type": "object",
   "properties": {
-    "metadata": {
-      "type": "object",
-      "properties": {
-        "finalized": {
-          "type": "boolean",
-          "description": "Indicator whether the meshTenantUsageReport was finalized already or not."
-        },
-        "name": {
-          "type": "string",
-          "description": "A name a meshTenantUsageReport can be uniquely identified with."
-        },
-        "lastModified": {
-          "type": "string",
-          "description": "Date of last update to the meshTenantUsageReport."
-        }
-      },
-      "description": "Contains attributes to identify a meshTenantUsageReport."
+    "kind": {
+      "type": "string",
+      "enum": [
+        "meshTenantUsageReport"
+      ]
     },
     "apiVersion": {
       "type": "string",
-      "description": "Version of meshTenantUsageReport datatype. Matches the version provided in the `Accept` request header."
+      "description": "Version of the meshTenantUsageReport datatype. Matches the version provided in the `Accept` request header.",
+      "enum": [
+        "v3"
+      ]
     },
-    "kind": {
-      "type": "string",
-      "description": "As a common meshObject structure exists, every meshObject has a 'kind'. This is always 'meshTenantUsageReport' for this endpoint."
+    "metadata": {
+      "required": [
+        "uuid",
+        "createdAt"
+      ],
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "description": "A uuid that identifies a meshTenantUsageReport uniquely."
+        },
+        "ownedByWorkspace": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The identifier of the workspace the meshTenantUsageReport belongs to, or null if the tenant is not managed by\nmeshStack."
+        },
+        "ownedByProject": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The identifier of the project the meshTenantUsageReport belongs to, or null if the tenant is not managed by\nmeshStack."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date the meshTenantUsageReport was created in the system that serves the API."
+        }
+      },
+      "description": "Contains common attributes of a meshTenantUsageReport, that also exist on other meshObjects."
     },
     "spec": {
+      "required": [
+        "period",
+        "reportCategory",
+        "platformType",
+        "platform",
+        "platformTenantId",
+        "version"
+      ],
       "type": "object",
       "properties": {
         "period": {
           "type": "string",
-          "description": "The period of the meshTenantUsageReport, e.g. '2022-01-06Z'."
+          "description": "The period of the meshTenantUsageReport, e.g. `2025-01`."
+        },
+        "reportCategory": {
+          "type": "string",
+          "description": "The reportCategory of the meshTenantUsageReport. One of `BILLING`, `ENVIRONMENTAL`."
+        },
+        "platformType": {
+          "type": "string",
+          "description": "The platformType of the platform the meshTenantUsageReport belongs to. One of `OpenStack`, `CloudFoundry`,\n`MeshMarketplace`, `Azure`, `AzureResourceGroup`, `Kubernetes`, `OpenShift`, `AzureKubernetesService`, `Aws`,\n`Gcp`, `Custom`."
+        },
+        "platform": {
+          "type": "string",
+          "description": "The platformFullIdentifier of the platform the meshTenantUsageReport belongs to."
         },
         "platformTenantId": {
           "type": "string",
           "description": "The platformTenantId that the meshTenantUsageReport belongs to."
         },
-        "platformType": {
-          "type": "string",
-          "description": "The platformType of the platform the meshTenantUsageReport belongs to."
-        },
-        "reportCategory": {
-          "type": "string",
-          "description": "The reportCategory of the meshTenantUsageReport, possible options are 'BILLING' or 'ENVIRONMENTAL'."
-        },
-        "platformFullIdentifier": {
-          "type": "string",
-          "description": "The platformFullIdentifier of the platform the meshTenantUsageReport belongs to."
+        "version": {
+          "type": "integer",
+          "format": "int64",
+          "description": "When a meshTenantUsageReport is updated after it was already finalized, the version is always increased by 1."
         }
       },
       "description": "All fields in this section describe the meshTenantUsageReport."
     },
     "status": {
+      "required": [
+        "generatedAt",
+        "timeframe",
+        "tags",
+        "lineItems"
+      ],
       "type": "object",
       "properties": {
-        "netAmounts": {
-          "type": "array",
-          "description": "A list of total reported amounts separated by currency.",
-          "items": {
-            "type": "object",
-            "properties": {
-              "amount": {
-                "type": "number",
-                "description": "The concrete amount of reported costs in the corresponding currency.",
-                "multipleOf": 0.00001
-              },
-              "currency": {
-                "type": "string",
-                "description": "The currency used for the corresponding amount."
-              },
-              "baseAmount": {
-                "type": "number",
-                "description": "The converted amount. For example, if currency is USD and baseCurrency is EUR, this will be the amount resulting from conversion from USD to EUR.",
-                "multipleOf": 0.00001
-              },
-              "baseCurrency": {
-                "type": "string",
-                "description": "Currency for the baseAmount. This value is either null or EUR."
-              }
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date when the meshTenantUsageReport was generated initially."
+        },
+        "finalizedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Date when the meshTenantUsageReport was finalized, or null while it is still open."
+        },
+        "cancelledAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Date when the meshTenantUsageReport was cancelled and replaced by a new meshTenantUsageReport."
+        },
+        "paymentMethod": {
+          "required": [
+            "identifier",
+            "name"
+          ],
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "identifier": {
+              "type": "string",
+              "description": "The identifier of the related payment method."
+            },
+            "name": {
+              "type": "string",
+              "description": "The name of the related payment method."
+            },
+            "amount": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "format": "int64",
+              "description": "The amount of the related payment method, if set."
+            },
+            "expirationDate": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time",
+              "description": "The expiration date of the related payment method, if set."
             }
-          }
+          },
+          "description": "The payment method that was assigned to the project the related tenant belongs to in the given period."
         },
         "timeframe": {
+          "required": [
+            "from",
+            "to"
+          ],
           "type": "object",
           "properties": {
             "from": {
               "type": "string",
+              "format": "date-time",
               "description": "At which point in time the period started (usually beginning of month)."
             },
             "to": {
               "type": "string",
+              "format": "date-time",
               "description": "Before which point in time the period ended (usually beginning of next month)."
             }
           },
-          "description": "This provides actual details about the period the meshTenantUsageReport was generated for."
+          "description": "This provides details about the period the meshTenantUsageReport was generated for."
         },
-        "workspaceIdentifier": {
-          "type": "string",
-          "description": "The identifier of the meshWorkspace the meshTenantUsageReport belongs to. (optional)"
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": "The related tags, that were inherited for the given period to the related tenant. This includes `workspace`,\n`project` and `payment method` tags. The values are provided as an array, as multiple values can be set for some\ntags."
         },
-        "projectIdentifier": {
-          "type": "string",
-          "description": "The identifier of the meshProject the meshTenantUsageReport belongs to. (optional)"
+        "lineItems": {
+          "type": "array",
+          "items": {
+            "required": [
+              "netAmount"
+            ],
+            "type": "object",
+            "properties": {
+              "netAmount": {
+                "required": [
+                  "amount",
+                  "currency"
+                ],
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number",
+                    "description": "The concrete amount of reported costs in the original currency.",
+                    "multipleOf": 0.00001
+                  },
+                  "currency": {
+                    "type": "string",
+                    "description": "The currency used for the corresponding amount."
+                  },
+                  "baseAmount": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "The converted amount. For example, if currency is USD and baseCurrency is EUR, this will be the amount resulting\nfrom conversion from USD to EUR. Only present when currency conversion is enabled in the meshStack financials\nsettings.",
+                    "multipleOf": 0.00001
+                  },
+                  "baseCurrency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The currency of the baseAmount. Only present when currency conversion is enabled."
+                  },
+                  "exchangeRate": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "The exchange rate that was used for the conversion to the base currency."
+                  }
+                },
+                "description": "The reported amount of this line item, in its original currency and optionally converted."
+              },
+              "sellerId": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Seller information can be provided in the Product Catalog of meshStack. You can e.g. use the sellerId to\nseparate costs coming from the cloud platform and additional fees that are applied by your company's platform\nteam."
+              },
+              "sellerProductGroup": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The sellerProductGroup can specify the seller information to a more detailed level. It is for example used to\nprovide the service broker name in case of a meshMarketplace usage report. The sellerId is set to the workspace\nidentifier in that case."
+              }
+            }
+          },
+          "description": "Top-level line items of the meshTenantUsageReport. Separate line items are created by sellerId,\nsellerProductGroup and currency."
         }
       },
       "description": "All fields in this section provide detailed content of the meshTenantUsageReport."

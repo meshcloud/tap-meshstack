@@ -16,23 +16,16 @@ plugins:
       - meshProjects.*
       - meshPaymentMethods.*
       - meshTenants.*
-      - meshChargebacks.*
-      # TODO (dev): meshTenantUsageReports are not implemented yet - please use the Chargeback preview feature in the meantime
-      #- meshTenantUsageReports.*
+      - meshTenantUsageReports.*
     config:
       # TODO: Configure tap-meshstack extractor to your needs
-      # TODO: Authentification for federation and kraken endpoint
+      # TODO: Authentification for federation endpoint
       # TODO: Configure the tag schemas for each meshObject
       federation:
         auth:
           username: $TAP_MESHSTACK_FEDERATION_USERNAME
           password: $TAP_MESHSTACK_FEDERATION_PASSWORD
         api_url: $TAP_MESHSTACK_FEDERATION_URL
-      kraken:
-        auth:
-          username: $TAP_MESHSTACK_KRAKEN_USERNAME
-          password: $TAP_MESHSTACK_KRAKEN_PASSWORD
-        api_url: $TAP_MESHSTACK_KRAKEN_URL
       start_date: '2010-01-01T00:00:00Z'
   loaders:
   - name: target-jsonl

@@ -154,20 +154,3 @@ class FederationMeshObjectStream(MeshObjectStream):
             username=self.config.get("federation").get("auth").get("username"),
             password=self.config.get("federation").get("auth").get("password"),
         )
-
-class KrakenMeshObjectStream(MeshObjectStream):
-    """meshStack meshObject stream class for kraken."""
-
-    @property
-    def url_base(self) -> str:
-        """Return the Kraken API URL root, configurable via tap settings."""
-        return self.config.get("kraken").get("api_url")
-    
-    @property
-    def authenticator(self) -> BasicAuthenticator:
-        """Return a new authenticator object."""
-        return BasicAuthenticator.create_for_stream(
-            self,
-            username=self.config.get("kraken").get("auth").get("username"),
-            password=self.config.get("kraken").get("auth").get("password"),
-        )

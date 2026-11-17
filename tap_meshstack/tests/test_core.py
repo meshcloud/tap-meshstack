@@ -18,13 +18,6 @@ SAMPLE_CONFIG = {
             "password": "password"
         },
         "api_url": "http://localhost:8000"
-    },
-    "kraken": {
-        "auth": {
-            "username": "user",
-            "password": "password"
-        },
-        "api_url": "http://localhost:8000"
     }
 }
 
