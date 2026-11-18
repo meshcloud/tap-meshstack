@@ -33,16 +33,16 @@ class TapMeshStack(Tap):
                     "auth",
                     th.ObjectType(
                         th.Property(
-                            "username",
+                            "client_id",
                             th.StringType,
                             required=True,
-                            description="The HTTP basic auth user to authenticate against the meshObject API for federation"
+                            description="The client id (key id) of the meshStack API key"
                         ),
                         th.Property(
-                            "password",
+                            "client_secret",
                             th.StringType,
                             required=True,
-                            description="The HTTP basic auth password to authenticate against the meshObject API for federation"
+                            description="The client secret (key secret) of the meshStack API key"
                         ),
                     ),
                     required=True,

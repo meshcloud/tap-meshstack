@@ -4,13 +4,15 @@ from typing import Any, Iterable, Optional, cast
 
 import requests
 import json
+from functools import cached_property
 from pathlib import Path
 from typing import Any, Optional, cast
 
 from singer_sdk import typing as th  # JSON schema typing helpers
 from singer_sdk.streams import RESTStream
-from singer_sdk.authenticators import BasicAuthenticator
 from singer_sdk.plugin_base import PluginBase as TapBaseClass
+
+from tap_meshstack.auth import ApiKeyAuthenticator
 
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
@@ -146,11 +148,12 @@ class FederationMeshObjectStream(MeshObjectStream):
         """Return the API URL root, configurable via tap settings."""
         return self.config.get("federation").get("api_url")
     
-    @property
-    def authenticator(self) -> BasicAuthenticator:
-        """Return a new authenticator object."""
-        return BasicAuthenticator.create_for_stream(
+    # cached, so that each stream logs in once instead of on every request
+    @cached_property
+    def authenticator(self) -> ApiKeyAuthenticator:
+        return ApiKeyAuthenticator(
             self,
-            username=self.config.get("federation").get("auth").get("username"),
-            password=self.config.get("federation").get("auth").get("password"),
+            api_url=self.url_base,
+            client_id=self.config.get("federation").get("auth").get("client_id"),
+            client_secret=self.config.get("federation").get("auth").get("client_secret"),
         )

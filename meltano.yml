@@ -23,8 +23,8 @@ plugins:
       # TODO: Configure the tag schemas for each meshObject
       federation:
         auth:
-          username: $TAP_MESHSTACK_FEDERATION_USERNAME
-          password: $TAP_MESHSTACK_FEDERATION_PASSWORD
+          client_id: $TAP_MESHSTACK_FEDERATION_CLIENT_ID
+          client_secret: $TAP_MESHSTACK_FEDERATION_CLIENT_SECRET
         api_url: $TAP_MESHSTACK_FEDERATION_URL
       start_date: '2010-01-01T00:00:00Z'
   loaders:

@@ -25,8 +25,8 @@ plugins:
 - `federation`: meshStack federation config
   - `api_url`: meshStack federation API URL
   - `auth`: authentication options, see [Authorization](#source-authentication-and-authorization)
-    - `username`: basic auth username
-    - `password`: basic auth password (plaintext)
+    - `client_id`: meshStack API key id
+    - `client_secret`: meshStack API key secret (plaintext)
 - `cert_path`: path to a public SSL certificate used to verify connection to meshStack. Useful if you are running meshStack Enterprise with certificates signed by a non-public Certificate Authority
 
 A full list of supported settings and capabilities for this tap is available by running:
@@ -37,8 +37,9 @@ tap-meshstack --about
 
 ### Source Authentication and Authorization
 
-The tap supports meshStack API authentication with HTTP Basic auth. Please review the official meshStack API documentation
-section on [API Authentication](https://docs.meshcloud.io/api#authentication) how you can configure the required access.
+The tap authenticates with a meshStack API key. It needs these permissions:
+`ADM_WORKSPACE_LIST`, `ADM_PROJECT_LIST`, `ADM_PAYMENTMETHOD_LIST`, `ADM_TENANT_LIST` and `ADM_TENANTUSAGEREPORT_LIST`.
+See [API Authentication](https://docs.meshcloud.io/api#authentication) for how to create API keys.
 
 ### meshObject Representation in Records
 
