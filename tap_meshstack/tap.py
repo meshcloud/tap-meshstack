@@ -6,7 +6,6 @@ from singer_sdk import Tap, Stream
 from singer_sdk import typing as th  # JSON schema typing helpers
 
 from tap_meshstack.streams import (
-    MeshChargebackStatementsStream,
     MeshTenantUsageReportsStream,
     MeshWorkspacesStream,
     MeshPaymentMethodsStream,
@@ -15,7 +14,6 @@ from tap_meshstack.streams import (
 )
 
 STREAM_TYPES = [
-    MeshChargebackStatementsStream,
     MeshTenantUsageReportsStream,
     MeshPaymentMethodsStream,
     MeshWorkspacesStream,
@@ -35,16 +33,16 @@ class TapMeshStack(Tap):
                     "auth",
                     th.ObjectType(
                         th.Property(
-                            "username",
+                            "client_id",
                             th.StringType,
                             required=True,
-                            description="The HTTP basic auth user to authenticate against the meshObject API for federation"
+                            description="The client id (key id) of the meshStack API key"
                         ),
                         th.Property(
-                            "password",
+                            "client_secret",
                             th.StringType,
                             required=True,
-                            description="The HTTP basic auth password to authenticate against the meshObject API for federation"
+                            description="The client secret (key secret) of the meshStack API key"
                         ),
                     ),
                     required=True,
@@ -59,38 +57,6 @@ class TapMeshStack(Tap):
             ),
             required=True,
             description="Configuration for Federation",
-        ),
-        th.Property(
-            "kraken",
-            th.ObjectType(
-                th.Property(
-                    "auth",
-                    th.ObjectType(
-                        th.Property(
-                            "username",
-                            th.StringType,
-                            required=True,
-                            description="The HTTP basic auth user to authenticate against the meshObject API for kraken"
-                        ),
-                        th.Property(
-                            "password",
-                            th.StringType,
-                            required=True,
-                            description="The HTTP basic auth password to authenticate against the meshObject API for kraken"
-                        ),
-                    ),
-                    required=True,
-                    description="API authentication configuration",
-                ),
-                th.Property(
-                    "api_url",
-                    th.StringType,
-                    required=True,
-                    description="The url of the meshObject API (excluding the /api prefix!)"
-                ),
-            ),
-            required=True,
-            description="Configuration for Kraken",
         ),
         th.Property(
             "cert_path",

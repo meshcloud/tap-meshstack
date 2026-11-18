@@ -4,7 +4,7 @@ import json
 from singer_sdk import Tap, Stream
 from typing import List
 
-from tap_meshstack.streams import MeshWorkspacesStream
+from tap_meshstack.streams import MeshTenantUsageReportsStream, MeshWorkspacesStream
 from tap_meshstack.tap import TapMeshStack
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
@@ -25,6 +25,15 @@ def test_tag_transform():
         stream.transform_record(record)
     
         assert record["spec"]["tags"] == [{"key": "environment", "values": ["dev", "prod"]}]
+
+def test_tenant_usage_report_tag_transform():
+    stream = MeshTenantUsageReportsStream(StubTap())
+
+    with open(f"{stub_dir}/meshtenantusagereports.json") as f:
+        record = json.load(f)["_embedded"]["meshTenantUsageReports"][0]
+        stream.transform_record(record)
+
+        assert record["status"]["tags"] == [{"key": "costCenter", "values": ["1234"]}]
 
 
 

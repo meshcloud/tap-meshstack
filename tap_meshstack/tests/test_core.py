@@ -14,15 +14,8 @@ from tap_meshstack.tap import TapMeshStack
 SAMPLE_CONFIG = {
     "federation": {
         "auth": {
-            "username": "user",
-            "password": "password"
-        },
-        "api_url": "http://localhost:8000"
-    },
-    "kraken": {
-        "auth": {
-            "username": "user",
-            "password": "password"
+            "client_id": "key-id",
+            "client_secret": "key-secret"
         },
         "api_url": "http://localhost:8000"
     }
@@ -35,6 +28,10 @@ def run_stub():
     this_dir = os.path.dirname(os.path.realpath(__file__))
     stub_dir = this_dir + "/../../stub"
     
+    @stub.route('/api/login', methods=['POST'])
+    def login():
+        return {"access_token": "token", "expires_in": 300}
+
     @stub.route('/api/meshobjects/<path:path>')
     def send_report(path):
         return send_from_directory(f"{stub_dir}/meshobjects", f"{path}.json")
